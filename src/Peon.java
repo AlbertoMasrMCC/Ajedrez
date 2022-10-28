@@ -1,13 +1,11 @@
-public class Peon extends Pieza
+public class Peon extends Pieza implements Cloneable
 {
 
-    public Peon(String nombre, int lado, boolean vivo, int[] movimientos)
+    public Peon(int lado, boolean vivo)
     {
 
-        this.nombre         = nombre;
         this.lado           = lado;
         this.vivo           = vivo;
-        this.movimientos    = movimientos;
 
     }
 
@@ -26,8 +24,39 @@ public class Peon extends Pieza
     }
 
     @Override
-    public void moverse(Casilla origen, Casilla destino) {
-        super.moverse(origen, destino);
+    public void moverse(Casilla origen, Casilla destino)
+    {
+
+
+
+    }
+
+    @Override
+    public int[] getMovimientos()
+    {
+
+        int[] movimientos = {2, 0, 0, 0, 1};
+        return movimientos;
+
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException
+    {
+
+        try
+        {
+
+            return  (Peon) super.clone();
+
+        }
+        catch (CloneNotSupportedException e)
+        {
+
+            return new Peon(this.lado, this.vivo);
+
+        }
+
     }
 
 }

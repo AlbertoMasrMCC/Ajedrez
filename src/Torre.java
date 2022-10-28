@@ -1,13 +1,11 @@
 public class Torre extends Pieza
 {
 
-    public Torre(String nombre, int lado, boolean vivo, int[] movimientos)
+    public Torre(int lado, boolean vivo)
     {
 
-        this.nombre         = nombre;
         this.lado           = lado;
         this.vivo           = vivo;
-        this.movimientos    = movimientos;
 
     }
 
@@ -19,7 +17,20 @@ public class Torre extends Pieza
     }
 
     @Override
-    public void moverse(Casilla origen, Casilla destino) {
-        super.moverse(origen, destino);
+    public void moverse(Casilla origen, Casilla destino)
+    {
+
+
+
     }
+
+    @Override
+    public int[] getMovimientos()
+    {
+
+        int[] movimientos = {7, 7, 7, 7, 0};
+        return movimientos;
+
+    }
+
 }

@@ -1,13 +1,11 @@
 public class Rey extends Pieza
 {
 
-    public Rey(String nombre, int lado, boolean vivo, int[] movimientos)
+    public Rey(int lado, boolean vivo)
     {
 
-        this.nombre         = nombre;
         this.lado           = lado;
         this.vivo           = vivo;
-        this.movimientos    = movimientos;
 
     }
 
@@ -19,7 +17,20 @@ public class Rey extends Pieza
     }
 
     @Override
-    public void moverse(Casilla origen, Casilla destino) {
-        super.moverse(origen, destino);
+    public void moverse(Casilla origen, Casilla destino)
+    {
+
+
+
     }
+
+    @Override
+    public int[] getMovimientos()
+    {
+
+        int[] movimientos = {1, 1, 1, 1, 1};
+        return movimientos;
+
+    }
+
 }

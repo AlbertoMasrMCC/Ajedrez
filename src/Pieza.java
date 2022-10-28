@@ -1,25 +1,16 @@
 public abstract class Pieza
 {
 
-    String nombre;
     int lado;
+
     boolean vivo;
-    int[] movimientos;
 
-    public String getNombre() {
-        return nombre;
-    }
+    private int[] movimientos;
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public abstract void moverse(Casilla origen, Casilla destino);
 
     public int getLado() {
         return lado;
-    }
-
-    public void setLado(int lado) {
-        this.lado = lado;
     }
 
     public boolean isVivo() {
@@ -30,14 +21,6 @@ public abstract class Pieza
         this.vivo = vivo;
     }
 
-    public int[] getMovimientos() {
-        return movimientos;
-    }
-
-    public void setMovimientos(int[] movimientos) {
-        this.movimientos = movimientos;
-    }
-
-    public void moverse(Casilla origen, Casilla destino){}
+    public abstract int[] getMovimientos();
 
 }

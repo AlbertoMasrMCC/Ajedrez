@@ -3,15 +3,8 @@ public class Casilla
 
     private boolean ocupado;
 
-    public Pieza getPieza() {
-        return pieza;
-    }
-
-    public void setPieza(Pieza pieza) {
-        this.pieza = pieza;
-    }
-
     private Pieza pieza;
+
     private int[] coordenadas;
 
     public Casilla(Pieza pieza, boolean ocupado, int[] coordenadas)
@@ -23,18 +16,28 @@ public class Casilla
 
     }
 
-    public void actualizarOcupado()
-    {
-
-
-
+    public boolean isOcupado() {
+        return ocupado;
     }
 
-    public void actualizarPieza(Pieza pieza)
-    {
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
+    }
 
+    public Pieza getPieza() {
+        return pieza;
+    }
 
+    public void setPieza(Pieza pieza) {
+        this.pieza = pieza;
+    }
 
+    public int[] getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void setCoordenadas(int[] coordenadas) {
+        this.coordenadas = coordenadas;
     }
 
 }
