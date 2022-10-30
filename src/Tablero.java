@@ -545,12 +545,8 @@ public class Tablero
                         }
                         else
                         {
-                            if (validarPiezaSeleccionada(coordenadaX + 1,coordenadaY)){
-
-                            }else{
+                            if (!validarPiezaSeleccionada(coordenadaX + 1,coordenadaY))
                                 movimientosPermitidos.add((coordenadaX + 1) +""+ coordenadaY);
-                            }
-
 
                         }
 
@@ -576,11 +572,8 @@ public class Tablero
                         else
                         {
 
-                            if (validarPiezaSeleccionada(coordenadaX - 1,coordenadaY)){
-
-                            }else{
+                            if (!validarPiezaSeleccionada(coordenadaX - 1,coordenadaY))
                                 movimientosPermitidos.add((coordenadaX - 1) +""+ coordenadaY);
-                            }
 
                         }
 
@@ -598,15 +591,17 @@ public class Tablero
 
                             if(coordenadaY - 1 >= 0)
                             {
+                                if (!validarPiezaSeleccionada(movimientoPosible,coordenadaY-1))
+                                    movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
 
-                                movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
 
                             }
 
                             if(coordenadaY + 1 <= 7)
                             {
 
-                                movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
+                                if (!validarPiezaSeleccionada(movimientoPosible,coordenadaY+1))
+                                    movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
 
                             }
 
@@ -649,15 +644,15 @@ public class Tablero
                         if(coordenadaX - 1 >= 0)
                         {
 
-                            movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
+                            if (!validarPiezaSeleccionada(coordenadaX-1,movimientoPosible))
+                                movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
 
                         }
 
                         if(coordenadaX + 1 <= 7)
                         {
-
-                            movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
-
+                            if (!validarPiezaSeleccionada(coordenadaX+1,movimientoPosible))
+                                movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
                         }
 
                     }
@@ -699,14 +694,15 @@ public class Tablero
                         if(coordenadaY - 1 >= 0)
                         {
 
-                            movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
-
+                            if (!validarPiezaSeleccionada(movimientoPosible,coordenadaY-1))
+                                movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
                         }
 
                         if(coordenadaY + 1 <= 7)
                         {
 
-                            movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
+                            if (!validarPiezaSeleccionada(movimientoPosible,coordenadaY+1))
+                                movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
 
                         }
 
@@ -750,15 +746,15 @@ public class Tablero
                         if(coordenadaX - 1 >= 0)
                         {
 
-                            movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
+                            if (!validarPiezaSeleccionada(coordenadaX-1,movimientoPosible))
+                                movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
 
                         }
 
                         if(coordenadaX + 1 <= 7)
                         {
-
-                            movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
-
+                            if (!validarPiezaSeleccionada(coordenadaX+1,movimientoPosible))
+                                movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
                         }
 
                     }
