@@ -343,7 +343,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♞ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♝ "+"\u001B[0m" );
                 return;
 
             }
@@ -533,16 +533,24 @@ public class Tablero
 
                             for (int j = coordenadaX + 1; j <= coordenadaX + movimientos[0]; j++)
                             {
-                                movimientosPermitidos.add(j +""+ coordenadaY);
 
+                                if (validarPiezaSeleccionada(j,coordenadaY)){
+                                    break;
+                                }else{
+                                    movimientosPermitidos.add(j +""+ coordenadaY);
+                                }
 
                             }
 
                         }
                         else
                         {
+                            if (validarPiezaSeleccionada(coordenadaX + 1,coordenadaY)){
 
-                            movimientosPermitidos.add((coordenadaX + 1) +""+ coordenadaY);
+                            }else{
+                                movimientosPermitidos.add((coordenadaX + 1) +""+ coordenadaY);
+                            }
+
 
                         }
 
@@ -556,7 +564,11 @@ public class Tablero
                             for (int j = coordenadaX - 1; j >= coordenadaX - movimientos[0]; j--)
                             {
 
-                                movimientosPermitidos.add(j +""+ coordenadaY);
+                                if (validarPiezaSeleccionada(j,coordenadaY)){
+                                    break;
+                                }else{
+                                    movimientosPermitidos.add(j +""+ coordenadaY);
+                                }
 
                             }
 
@@ -564,7 +576,11 @@ public class Tablero
                         else
                         {
 
-                            movimientosPermitidos.add((coordenadaX - 1) +""+ coordenadaY);
+                            if (validarPiezaSeleccionada(coordenadaX - 1,coordenadaY)){
+
+                            }else{
+                                movimientosPermitidos.add((coordenadaX - 1) +""+ coordenadaY);
+                            }
 
                         }
 
@@ -606,7 +622,11 @@ public class Tablero
                             if(j < 0)
                                 break;
 
-                            movimientosPermitidos.add(j +""+ coordenadaY);
+                            if (validarPiezaSeleccionada(j,coordenadaY)){
+                                break;
+                            }else{
+                                movimientosPermitidos.add(j +""+ coordenadaY);
+                            }
 
                         }
 
@@ -652,7 +672,11 @@ public class Tablero
                         if(j > 7)
                             break;
 
-                        movimientosPermitidos.add(coordenadaX +""+ j);
+                        if (validarPiezaSeleccionada(coordenadaX,j)){
+                            break;
+                        }else{
+                            movimientosPermitidos.add(coordenadaX +""+ j);
+                        }
 
                     }
 
@@ -698,7 +722,12 @@ public class Tablero
                         if(j > 7)
                             break;
 
-                        movimientosPermitidos.add(j +""+ coordenadaY);
+                        if (validarPiezaSeleccionada(j,coordenadaY)){
+                            break;
+                        }else{
+                            movimientosPermitidos.add(j +""+ coordenadaY);
+                        }
+
 
                     }
 
@@ -744,7 +773,12 @@ public class Tablero
                         if(j < 0)
                             break;
 
-                        movimientosPermitidos.add(coordenadaX +""+ j);
+                        if (validarPiezaSeleccionada(coordenadaX,j)){
+                            break;
+                        }else{
+                            movimientosPermitidos.add(coordenadaX +""+ j);
+                        }
+
 
                     }
 
@@ -769,7 +803,13 @@ public class Tablero
                     if(y > 7)
                         break;
 
-                    movimientosPermitidos.add(x +""+ y);
+                    if (validarPiezaSeleccionada(x,y)){
+                        break;
+                    }else{
+                        movimientosPermitidos.add(x +""+ y);
+                    }
+
+
 
                 }
 
@@ -783,7 +823,11 @@ public class Tablero
                     if(y < 0)
                         break;
 
-                    movimientosPermitidos.add(x +""+ y);
+                    if (validarPiezaSeleccionada(x,y)){
+                        break;
+                    }else{
+                        movimientosPermitidos.add(x +""+ y);
+                    }
 
                 }
 
@@ -797,7 +841,11 @@ public class Tablero
                     if(y < 0)
                         break;
 
-                    movimientosPermitidos.add(x +""+ y);
+                    if (validarPiezaSeleccionada(x,y)){
+                        break;
+                    }else{
+                        movimientosPermitidos.add(x +""+ y);
+                    }
 
                 }
 
@@ -811,7 +859,11 @@ public class Tablero
                     if(y > 7)
                         break;
 
-                    movimientosPermitidos.add(x +""+ y);
+                    if (validarPiezaSeleccionada(x,y)){
+                        break;
+                    }else{
+                        movimientosPermitidos.add(x +""+ y);
+                    }
 
                 }
 
