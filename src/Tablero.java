@@ -275,7 +275,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001b[48;5;2500m"+"\u001b[38;5;127m"+" ♜ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♜ "+"\u001B[0m" );
                 return;
 
             }
@@ -309,7 +309,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♞ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♞ "+"\u001B[0m" );
                 return;
 
             }
@@ -343,7 +343,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♝ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♝ "+"\u001B[0m" );
                 return;
 
             }
@@ -377,7 +377,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♚ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♚ "+"\u001B[0m" );
                 return;
 
             }
@@ -411,7 +411,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♛ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♛ "+"\u001B[0m" );
                 return;
 
             }
@@ -445,7 +445,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♙ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♙ "+"\u001B[0m" );
                 return;
 
             }
@@ -511,8 +511,6 @@ public class Tablero
         Casilla casilla = dimensiones[coordenadaX][coordenadaY];
 
         Pieza pieza = casilla.getPieza();
-
-        int color = pieza.getLado();
 
         int[] movimientos = pieza.getMovimientos();
 
@@ -842,11 +840,10 @@ public class Tablero
                     }else{
                         movimientosPermitidos.add(x +""+ y);
                     }
-
                 }
 
                 // ABAJO DERECHA
-                for(int x = coordenadaX + 1, y = coordenadaY + 1; x < coordenadaX - movimientos[4] || y < coordenadaY - movimientos[4]; x++, y++)
+                for(int x = coordenadaX + 1, y = coordenadaY + 1; x > coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y++)
                 {
 
                     if (x > 7)
@@ -855,11 +852,12 @@ public class Tablero
                     if(y > 7)
                         break;
 
-                    if (validarPiezaSeleccionada(x,y)){
+                   if (validarPiezaSeleccionada(x,y)){
                         break;
                     }else{
                         movimientosPermitidos.add(x +""+ y);
                     }
+
 
                 }
 
@@ -871,7 +869,19 @@ public class Tablero
 
     public void jugada(int[] coordenadaOrigen, int[] coordenadaDestino)
     {
+        int coordXOrigen = coordenadaOrigen[0];
+        int coordYOrigen = coordenadaOrigen[1];
+        int coordXDesti = coordenadaDestino[0];
+        int coordYDesti = coordenadaDestino[1];
 
+        Casilla casillaOrigen = dimensiones[coordXOrigen][coordYOrigen];
+        Casilla casillaDestino = dimensiones[coordXDesti][coordYDesti];
+
+        Pieza piezaOrigen = casillaOrigen.getPieza();
+
+        casillaDestino.setPieza(piezaOrigen);
+
+        casillaOrigen.setPieza(null);
 
     }
 
