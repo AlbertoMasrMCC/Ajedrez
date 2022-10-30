@@ -169,7 +169,7 @@ public class Tablero
                 if(j == 7)
                 {
 
-                    System.out.println("\u001b[43;1m"+"\u001b[33;1m"+"♜"+"\u001b[30m"+ numeros[numerosContador] + " "+"\u001b[0m");
+                    System.out.println("\u001b[48;5;31m"+"\u001b[38;5;31m"+"♜"+"\u001b[30m"+ numeros[numerosContador] + " "+"\u001b[0m");
                     numerosContador--;
 
                 }
@@ -181,7 +181,7 @@ public class Tablero
         for (int i = 0; i < letras.length; i++)
         {
 
-            System.out.print("\u001b[43;1m"+"\u001b[33;1m"+"♜"+"\u001b[30m"+ letras[i]+ " "+"\u001b[0m");
+            System.out.print("\u001b[48;5;31m"+"\u001b[38;5;31m"+"♜"+"\u001b[30m"+ letras[i]+ " "+"\u001b[0m");
 
         }
 
@@ -223,7 +223,7 @@ public class Tablero
                 if(j == 7)
                 {
 
-                    System.out.println("\u001b[43;1m"+"\u001b[33;1m"+"♜"+"\u001b[30m"+ numeros[numerosContador] + " "+"\u001b[0m");
+                    System.out.println("\u001b[48;5;31m"+"\u001b[38;5;31m"+"♜"+"\u001b[30m"+ numeros[numerosContador] + " "+"\u001b[0m");
                     numerosContador--;
 
                 }
@@ -235,7 +235,7 @@ public class Tablero
         for (int i = 0; i < letras.length; i++)
         {
 
-            System.out.print("\u001b[43;1m"+"\u001b[33;1m"+"♜"+"\u001b[30m"+ letras[i]+ " "+"\u001b[0m");
+            System.out.print("\u001b[48;5;31m"+"\u001b[38;5;31m"+"♜"+"\u001b[30m"+ letras[i]+ " "+"\u001b[0m");
 
         }
 
@@ -255,13 +255,13 @@ public class Tablero
             if(blancas)
             {
 
-                System.out.print("\u001b[47;231m"+"\u001B[37m"+" ♜ " + "\u001B[0m");
+                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;250m"+" ♜ " + "\u001B[0m");
 
             }
             else
             {
 
-                System.out.print("\u001B[40m"+"\u001B[30m"+" ♜ "+"\u001B[0m");
+                System.out.print("\u001b[48;5;8m"+"\u001b[38;5;8m"+" ♜ "+"\u001B[0m");
 
             }
 
@@ -275,7 +275,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001B[47m"+"\u001b[33;1m"+" ♜ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;2500m"+"\u001b[38;5;127m"+" ♜ "+"\u001B[0m" );
                 return;
 
             }
@@ -284,18 +284,18 @@ public class Tablero
             {
 
                 if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[47m"+"\u001B[35m"+" ♜ "+"\u001B[0m" );
+                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♜ "+"\u001B[0m" );
                 else
-                    System.out.print("\u001B[47m"+"\u001B[36m"+" ♜ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;7m"+"\u001b[38;5;255m"+" ♜ "+"\u001B[0m");
 
             }
             else
             {
 
                 if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[40m" + "\u001B[35m" + " ♜ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♜ "+"\u001B[0m");
                 else
-                    System.out.print("\u001B[40m" + "\u001B[36m" + " ♜ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♜ "+"\u001B[0m");
 
             }
 
@@ -309,7 +309,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001B[47m"+"\u001b[33;1m"+" ♞ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♞ "+"\u001B[0m" );
                 return;
 
             }
@@ -318,18 +318,18 @@ public class Tablero
             {
 
                 if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[47m"+"\u001B[35m"+" ♞ "+"\u001B[0m" );
+                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♞ "+"\u001B[0m" );
                 else
-                    System.out.print("\u001B[47m"+"\u001B[36m"+" ♞ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♞ "+"\u001B[0m");
 
             }
             else
             {
 
                 if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[40m" + "\u001B[35m" + " ♞ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♞ "+"\u001B[0m");
                 else
-                    System.out.print("\u001B[40m" + "\u001B[36m" + " ♞ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♞ "+"\u001B[0m");
 
             }
 
@@ -343,7 +343,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001B[47m"+"\u001b[33;1m"+" ♞ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♞ "+"\u001B[0m" );
                 return;
 
             }
@@ -352,18 +352,18 @@ public class Tablero
             {
 
                 if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[47m"+"\u001B[35m"+" ♝ "+"\u001B[0m" );
+                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♝ "+"\u001B[0m" );
                 else
-                    System.out.print("\u001B[47m"+"\u001B[36m"+" ♝ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♝ "+"\u001B[0m");
 
             }
             else
             {
 
                 if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[40m" + "\u001B[35m" + " ♝ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♝ "+"\u001B[0m");
                 else
-                    System.out.print("\u001B[40m" + "\u001B[36m" + " ♝ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♝ "+"\u001B[0m");
 
             }
 
@@ -377,7 +377,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001B[47m"+"\u001b[33;1m"+" ♚ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♚ "+"\u001B[0m" );
                 return;
 
             }
@@ -386,18 +386,18 @@ public class Tablero
             {
 
                 if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[47m"+"\u001B[35m"+" ♚ "+"\u001B[0m" );
+                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♚ "+"\u001B[0m" );
                 else
-                    System.out.print("\u001B[47m"+"\u001B[36m"+" ♚ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♚ "+"\u001B[0m");
 
             }
             else
             {
 
                 if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[40m" + "\u001B[35m" + " ♚ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♚ "+"\u001B[0m");
                 else
-                    System.out.print("\u001B[40m" + "\u001B[36m" + " ♚ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♚ "+"\u001B[0m");
 
             }
 
@@ -411,7 +411,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001B[47m"+"\u001b[33;1m"+" ♛ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♛ "+"\u001B[0m" );
                 return;
 
             }
@@ -420,18 +420,18 @@ public class Tablero
             {
 
                 if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[47m"+"\u001B[35m"+" ♛ "+"\u001B[0m" );
+                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♛ "+"\u001B[0m" );
                 else
-                    System.out.print("\u001B[47m"+"\u001B[36m"+" ♛ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♛ "+"\u001B[0m");
 
             }
             else
             {
 
                 if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[40m" + "\u001B[35m" + " ♛ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♛ "+"\u001B[0m");
                 else
-                    System.out.print("\u001B[40m" + "\u001B[36m" + " ♛ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♛ "+"\u001B[0m");
 
             }
 
@@ -445,7 +445,7 @@ public class Tablero
             if(seleccionada)
             {
 
-                System.out.print("\u001B[47m"+"\u001b[33;1m"+" ♙ "+"\u001B[0m" );
+                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;127m"+" ♙ "+"\u001B[0m" );
                 return;
 
             }
@@ -454,18 +454,18 @@ public class Tablero
             {
 
                 if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[47m"+"\u001B[35m"+" ♙ "+"\u001B[0m" );
+                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♙ "+"\u001B[0m" );
                 else
-                    System.out.print("\u001B[47m"+"\u001B[36m"+" ♙ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♙ "+"\u001B[0m");
 
             }
             else
             {
 
                 if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001B[40m" + "\u001B[35m" + " ♙ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♙ "+"\u001B[0m");
                 else
-                    System.out.print("\u001B[40m" + "\u001B[36m" + " ♙ "+"\u001B[0m");
+                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♙ "+"\u001B[0m");
 
             }
 
@@ -512,6 +512,8 @@ public class Tablero
 
         Pieza pieza = casilla.getPieza();
 
+        int color = pieza.getLado();
+
         int[] movimientos = pieza.getMovimientos();
 
         ArrayList<String> movimientosPermitidos = new ArrayList<String>();
@@ -531,8 +533,8 @@ public class Tablero
 
                             for (int j = coordenadaX + 1; j <= coordenadaX + movimientos[0]; j++)
                             {
-
                                 movimientosPermitidos.add(j +""+ coordenadaY);
+
 
                             }
 
@@ -821,6 +823,7 @@ public class Tablero
 
     public void jugada(int[] coordenadaOrigen, int[] coordenadaDestino)
     {
+
 
     }
 

@@ -88,7 +88,7 @@ public class Ajedrez
             try
             {
 
-                if(decision)
+                if(!decision)
                     System.out.print(jugador +" introduzca las coordenada de la pieza que se desea mover: ");
                 else
                     System.out.print(jugador +" introduzca la coordenada de destino de su pieza: ");
