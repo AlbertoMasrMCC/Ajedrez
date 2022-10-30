@@ -508,6 +508,13 @@ public class Tablero
         final int NEGRAS    = 0;
         final int BLANCAS   = 1;
 
+        int turnoActual;
+
+        if (turnoBlanca)
+            turnoActual = 1;
+        else
+            turnoActual = 0;
+
         Casilla casilla = dimensiones[coordenadaX][coordenadaY];
 
         Pieza pieza = casilla.getPieza();
@@ -618,7 +625,12 @@ public class Tablero
                             if (validarPiezaSeleccionada(j,coordenadaY)){
                                 break;
                             }else{
+
                                 movimientosPermitidos.add(j +""+ coordenadaY);
+                                if (dimensiones[j][coordenadaY].getPieza() != null){
+                                    if (dimensiones[j][coordenadaY].getPieza().getLado() != turnoActual)
+                                        break;
+                                }
                             }
 
                         }
@@ -668,7 +680,12 @@ public class Tablero
                         if (validarPiezaSeleccionada(coordenadaX,j)){
                             break;
                         }else{
+
                             movimientosPermitidos.add(coordenadaX +""+ j);
+                            if (dimensiones[coordenadaX][j].getPieza() != null){
+                                if (dimensiones[coordenadaX][j].getPieza().getLado() != turnoActual)
+                                    break;
+                            }
                         }
 
                     }
@@ -719,7 +736,12 @@ public class Tablero
                         if (validarPiezaSeleccionada(j,coordenadaY)){
                             break;
                         }else{
+
                             movimientosPermitidos.add(j +""+ coordenadaY);
+                            if (dimensiones[j][coordenadaY].getPieza() != null){
+                                if (dimensiones[j][coordenadaY].getPieza().getLado() != turnoActual)
+                                    break;
+                            }
                         }
 
 
@@ -771,6 +793,10 @@ public class Tablero
                             break;
                         }else{
                             movimientosPermitidos.add(coordenadaX +""+ j);
+                            if (dimensiones[coordenadaX][j].getPieza() != null){
+                                if (dimensiones[coordenadaX][j].getPieza().getLado() != turnoActual)
+                                    break;
+                            }
                         }
 
 
@@ -801,6 +827,11 @@ public class Tablero
                         break;
                     }else{
                         movimientosPermitidos.add(x +""+ y);
+                        if (dimensiones[x][y].getPieza() != null){
+                            if (dimensiones[x][y].getPieza().getLado() != turnoActual)
+                                break;
+                        }
+
                     }
 
 
@@ -821,6 +852,10 @@ public class Tablero
                         break;
                     }else{
                         movimientosPermitidos.add(x +""+ y);
+                        if (dimensiones[x][y].getPieza() != null){
+                            if (dimensiones[x][y].getPieza().getLado() != turnoActual)
+                                break;
+                        }
                     }
 
                 }
@@ -839,6 +874,10 @@ public class Tablero
                         break;
                     }else{
                         movimientosPermitidos.add(x +""+ y);
+                        if (dimensiones[x][y].getPieza() != null){
+                            if (dimensiones[x][y].getPieza().getLado() != turnoActual)
+                                break;
+                        }
                     }
                 }
 
@@ -855,7 +894,11 @@ public class Tablero
                    if (validarPiezaSeleccionada(x,y)){
                         break;
                     }else{
-                        movimientosPermitidos.add(x +""+ y);
+                       movimientosPermitidos.add(x +""+ y);
+                       if (dimensiones[x][y].getPieza() != null){
+                           if (dimensiones[x][y].getPieza().getLado() != turnoActual)
+                               break;
+                       }
                     }
 
 
