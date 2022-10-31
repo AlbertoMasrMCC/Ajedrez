@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Ajedrez
@@ -71,7 +70,7 @@ public class Ajedrez
 
     }
 
-    private static int[] pedirPiezaMover(String jugador, boolean decision)
+    public static int[] pedirPiezaMover(String jugador, boolean decision)
     {
 
         Scanner entrada = new Scanner(System.in);
@@ -168,7 +167,7 @@ public class Ajedrez
 
     }
 
-    private static boolean deseaContinuar()
+    public static boolean deseaContinuar()
     {
 
         while (true)

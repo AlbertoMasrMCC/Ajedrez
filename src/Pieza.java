@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class Pieza
 {
 
@@ -7,7 +9,9 @@ public abstract class Pieza
 
     private int[] movimientos;
 
-    public abstract void moverse(Casilla origen, Casilla destino);
+    public abstract ArrayList<String> moverse(int coordenadaX, int coordenadaY);
+
+    public abstract void pintarse(boolean blancas, boolean seleccionada);
 
     public int getLado() {
         return lado;

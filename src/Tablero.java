@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class Tablero
 {
 
-    private Casilla[][] dimensiones;
+    static private Casilla[][] dimensiones;
 
-    private boolean turnoBlanca;
+    static private boolean turnoBlanca;
 
     static private int[] numeros    = {1, 2, 3, 4, 5, 6, 7, 8};
 
@@ -50,7 +50,7 @@ public class Tablero
 
     }
 
-    private Pieza crearPieza(int coordenadaX, int coordenadaY)
+    public Pieza crearPieza(int coordenadaX, int coordenadaY)
     {
 
         final int NEGRAS    = 0;
@@ -246,9 +246,6 @@ public class Tablero
     public void pintarPieza(Pieza pieza, boolean blancas, boolean seleccionada)
     {
 
-        final int NEGRAS    = 0;
-        final int BLANCAS   = 1;
-
         if(pieza == null)
         {
 
@@ -269,209 +266,7 @@ public class Tablero
 
         }
 
-        if(pieza instanceof Torre)
-        {
-
-            if(seleccionada)
-            {
-
-                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♜ "+"\u001B[0m" );
-                return;
-
-            }
-
-            if(blancas)
-            {
-
-                if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♜ "+"\u001B[0m" );
-                else
-                    System.out.print("\u001b[48;5;7m"+"\u001b[38;5;255m"+" ♜ "+"\u001B[0m");
-
-            }
-            else
-            {
-
-                if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♜ "+"\u001B[0m");
-                else
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♜ "+"\u001B[0m");
-
-            }
-
-            return;
-
-        }
-
-        if(pieza instanceof Caballo)
-        {
-
-            if(seleccionada)
-            {
-
-                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♞ "+"\u001B[0m" );
-                return;
-
-            }
-
-            if(blancas)
-            {
-
-                if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♞ "+"\u001B[0m" );
-                else
-                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♞ "+"\u001B[0m");
-
-            }
-            else
-            {
-
-                if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♞ "+"\u001B[0m");
-                else
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♞ "+"\u001B[0m");
-
-            }
-
-            return;
-
-        }
-
-        if(pieza instanceof Alfil)
-        {
-
-            if(seleccionada)
-            {
-
-                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♝ "+"\u001B[0m" );
-                return;
-
-            }
-
-            if(blancas)
-            {
-
-                if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♝ "+"\u001B[0m" );
-                else
-                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♝ "+"\u001B[0m");
-
-            }
-            else
-            {
-
-                if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♝ "+"\u001B[0m");
-                else
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♝ "+"\u001B[0m");
-
-            }
-
-            return;
-
-        }
-
-        if(pieza instanceof Rey)
-        {
-
-            if(seleccionada)
-            {
-
-                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♚ "+"\u001B[0m" );
-                return;
-
-            }
-
-            if(blancas)
-            {
-
-                if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♚ "+"\u001B[0m" );
-                else
-                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♚ "+"\u001B[0m");
-
-            }
-            else
-            {
-
-                if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♚ "+"\u001B[0m");
-                else
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♚ "+"\u001B[0m");
-
-            }
-
-            return;
-
-        }
-
-        if(pieza instanceof Reina)
-        {
-
-            if(seleccionada)
-            {
-
-                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♛ "+"\u001B[0m" );
-                return;
-
-            }
-
-            if(blancas)
-            {
-
-                if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♛ "+"\u001B[0m" );
-                else
-                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♛ "+"\u001B[0m");
-
-            }
-            else
-            {
-
-                if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♛ "+"\u001B[0m");
-                else
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♛ "+"\u001B[0m");
-
-            }
-
-            return;
-
-        }
-
-        if(pieza instanceof Peon)
-        {
-
-            if(seleccionada)
-            {
-
-                System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♙ "+"\u001B[0m" );
-                return;
-
-            }
-
-            if(blancas)
-            {
-
-                if(pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♙ "+"\u001B[0m" );
-                else
-                    System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♙ "+"\u001B[0m");
-
-            }
-            else
-            {
-
-                if (pieza.getLado() == NEGRAS)
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♙ "+"\u001B[0m");
-                else
-                    System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♙ "+"\u001B[0m");
-
-            }
-
-            return;
-
-        }
+        pieza.pintarse(blancas, seleccionada);
 
     }
 
@@ -482,7 +277,7 @@ public class Tablero
 
     }
 
-    public boolean validarPiezaSeleccionada(int coordenadaX, int coordenadaY)
+    public static boolean validarPiezaSeleccionada(int coordenadaX, int coordenadaY)
     {
 
         int turnoActual;
@@ -502,11 +297,8 @@ public class Tablero
 
     }
 
-    public ArrayList<String> movimientosPosible(int coordenadaX, int coordenadaY)
+    public static boolean validarPiezaEnemiga(int coordenadaX, int coordenadaY)
     {
-
-        final int NEGRAS    = 0;
-        final int BLANCAS   = 1;
 
         int turnoActual;
 
@@ -515,403 +307,30 @@ public class Tablero
         else
             turnoActual = 0;
 
+        if(dimensiones[coordenadaX][coordenadaY].getPieza() == null)
+            return false;
+
+        if (dimensiones[coordenadaX][coordenadaY].getPieza().getLado() == turnoActual)
+            return false;
+
+        return true;
+
+    }
+
+    public ArrayList<String> movimientosPosible(int coordenadaX, int coordenadaY)
+    {
+
         Casilla casilla = dimensiones[coordenadaX][coordenadaY];
 
         Pieza pieza = casilla.getPieza();
 
-        int[] movimientos = pieza.getMovimientos();
-
-        ArrayList<String> movimientosPermitidos = new ArrayList<String>();
-
-            // MOVIMIENTO HACIA ADELANTE
-            if(movimientos[0] != 0)
-            {
-
-                if(pieza instanceof Peon)
-                {
-
-                    if (pieza.getLado() == NEGRAS)
-                    {
-
-                        if(coordenadaX == 1)
-                        {
-
-                            for (int j = coordenadaX + 1; j <= coordenadaX + movimientos[0]; j++)
-                            {
-
-                                if (validarPiezaSeleccionada(j,coordenadaY)){
-                                    break;
-                                }else{
-                                    movimientosPermitidos.add(j +""+ coordenadaY);
-                                }
-
-                            }
-
-                        }
-                        else
-                        {
-                            if (!validarPiezaSeleccionada(coordenadaX + 1,coordenadaY))
-                                movimientosPermitidos.add((coordenadaX + 1) +""+ coordenadaY);
-
-                        }
-
-                    }
-                    else
-                    {
-
-                        if(coordenadaX == 6)
-                        {
-
-                            for (int j = coordenadaX - 1; j >= coordenadaX - movimientos[0]; j--)
-                            {
-
-                                if (validarPiezaSeleccionada(j,coordenadaY)){
-                                    break;
-                                }else{
-                                    movimientosPermitidos.add(j +""+ coordenadaY);
-                                }
-
-                            }
-
-                        }
-                        else
-                        {
-
-                            if (!validarPiezaSeleccionada(coordenadaX - 1,coordenadaY))
-                                movimientosPermitidos.add((coordenadaX - 1) +""+ coordenadaY);
-
-                        }
-
-                    }
-
-                }
-                else
-                    if(pieza instanceof Caballo)
-                    {
-
-                        int movimientoPosible = coordenadaX - movimientos[0];
-
-                        if(movimientoPosible >= 0)
-                        {
-
-                            if(coordenadaY - 1 >= 0)
-                            {
-                                if (!validarPiezaSeleccionada(movimientoPosible,coordenadaY-1))
-                                    movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
-
-
-                            }
-
-                            if(coordenadaY + 1 <= 7)
-                            {
-
-                                if (!validarPiezaSeleccionada(movimientoPosible,coordenadaY+1))
-                                    movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
-
-                            }
-
-                        }
-
-                    }
-                    else
-                    {
-
-                        for (int j = coordenadaX - 1; j >= coordenadaX - movimientos[0]; j--)
-                        {
-
-                            if(j < 0)
-                                break;
-
-                            if (validarPiezaSeleccionada(j,coordenadaY)){
-                                break;
-                            }else{
-
-                                movimientosPermitidos.add(j +""+ coordenadaY);
-                                if (dimensiones[j][coordenadaY].getPieza() != null){
-                                    if (dimensiones[j][coordenadaY].getPieza().getLado() != turnoActual)
-                                        break;
-                                }
-                            }
-
-                        }
-
-                    }
-
-            }
-
-            // MOVIMIENTO HACIA LA DERECHA
-            if(movimientos[1] != 0)
-            {
-
-                if(pieza instanceof Caballo)
-                {
-
-                    int movimientoPosible = coordenadaY + movimientos[0];
-
-                    if(movimientoPosible <= 7)
-                    {
-
-                        if(coordenadaX - 1 >= 0)
-                        {
-
-                            if (!validarPiezaSeleccionada(coordenadaX-1,movimientoPosible))
-                                movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
-
-                        }
-
-                        if(coordenadaX + 1 <= 7)
-                        {
-                            if (!validarPiezaSeleccionada(coordenadaX+1,movimientoPosible))
-                                movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
-                        }
-
-                    }
-
-                }
-                else
-                {
-
-                    for (int j = coordenadaY + 1; j <= coordenadaY + movimientos[1]; j++)
-                    {
-
-                        if(j > 7)
-                            break;
-
-                        if (validarPiezaSeleccionada(coordenadaX,j)){
-                            break;
-                        }else{
-
-                            movimientosPermitidos.add(coordenadaX +""+ j);
-                            if (dimensiones[coordenadaX][j].getPieza() != null){
-                                if (dimensiones[coordenadaX][j].getPieza().getLado() != turnoActual)
-                                    break;
-                            }
-                        }
-
-                    }
-
-                }
-
-            }
-
-            // MOVIMIENTO HACIA ABAJO
-            if(movimientos[2] != 0)
-            {
-
-                if(pieza instanceof Caballo)
-                {
-
-                    int movimientoPosible = coordenadaX + movimientos[0];
-
-                    if(movimientoPosible <= 7)
-                    {
-
-                        if(coordenadaY - 1 >= 0)
-                        {
-
-                            if (!validarPiezaSeleccionada(movimientoPosible,coordenadaY-1))
-                                movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
-                        }
-
-                        if(coordenadaY + 1 <= 7)
-                        {
-
-                            if (!validarPiezaSeleccionada(movimientoPosible,coordenadaY+1))
-                                movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
-
-                        }
-
-                    }
-
-                }
-                else
-                {
-
-                    for (int j = coordenadaX + 1; j <= coordenadaX + movimientos[2]; j++)
-                    {
-
-                        if(j > 7)
-                            break;
-
-                        if (validarPiezaSeleccionada(j,coordenadaY)){
-                            break;
-                        }else{
-
-                            movimientosPermitidos.add(j +""+ coordenadaY);
-                            if (dimensiones[j][coordenadaY].getPieza() != null){
-                                if (dimensiones[j][coordenadaY].getPieza().getLado() != turnoActual)
-                                    break;
-                            }
-                        }
-
-
-                    }
-
-                }
-
-            }
-
-            // MOVIMIENTO HACIA LA IZQUIERDA
-            if(movimientos[3] != 0)
-            {
-
-                if(pieza instanceof Caballo)
-                {
-
-                    int movimientoPosible = coordenadaY - movimientos[0];
-
-                    if(movimientoPosible >= 0)
-                    {
-
-                        if(coordenadaX - 1 >= 0)
-                        {
-
-                            if (!validarPiezaSeleccionada(coordenadaX-1,movimientoPosible))
-                                movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
-
-                        }
-
-                        if(coordenadaX + 1 <= 7)
-                        {
-                            if (!validarPiezaSeleccionada(coordenadaX+1,movimientoPosible))
-                                movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
-                        }
-
-                    }
-
-                }
-                else
-                {
-
-                    for (int j = coordenadaY - 1; j >= coordenadaY - movimientos[3]; j--)
-                    {
-
-                        if(j < 0)
-                            break;
-
-                        if (validarPiezaSeleccionada(coordenadaX,j)){
-                            break;
-                        }else{
-                            movimientosPermitidos.add(coordenadaX +""+ j);
-                            if (dimensiones[coordenadaX][j].getPieza() != null){
-                                if (dimensiones[coordenadaX][j].getPieza().getLado() != turnoActual)
-                                    break;
-                            }
-                        }
-
-
-                    }
-
-                }
-
-            }
-
-            // MOVIMIENTO EN DIAGONAL
-            if(movimientos[4] != 0)
-            {
-
-                if(pieza instanceof Peon)
-                    return movimientosPermitidos;
-
-                // ARRIBA DERECHA
-                for(int x = coordenadaX - 1, y = coordenadaY + 1; x >= coordenadaX - movimientos[4] || y < coordenadaY - movimientos[4]; x--, y++)
-                {
-
-                    if (x < 0)
-                        break;
-
-                    if(y > 7)
-                        break;
-
-                    if (validarPiezaSeleccionada(x,y)){
-                        break;
-                    }else{
-                        movimientosPermitidos.add(x +""+ y);
-                        if (dimensiones[x][y].getPieza() != null){
-                            if (dimensiones[x][y].getPieza().getLado() != turnoActual)
-                                break;
-                        }
-
-                    }
-
-
-
-                }
-
-                // ARRIBA IZQUIERDA
-                for(int x = coordenadaX - 1, y = coordenadaY - 1; x >= coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x--, y--)
-                {
-
-                    if (x < 0)
-                        break;
-
-                    if(y < 0)
-                        break;
-
-                    if (validarPiezaSeleccionada(x,y)){
-                        break;
-                    }else{
-                        movimientosPermitidos.add(x +""+ y);
-                        if (dimensiones[x][y].getPieza() != null){
-                            if (dimensiones[x][y].getPieza().getLado() != turnoActual)
-                                break;
-                        }
-                    }
-
-                }
-
-                // ABAJO IZQUIERDA
-                for(int x = coordenadaX + 1, y = coordenadaY - 1; x < coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y--)
-                {
-
-                    if (x > 7)
-                        break;
-
-                    if(y < 0)
-                        break;
-
-                    if (validarPiezaSeleccionada(x,y)){
-                        break;
-                    }else{
-                        movimientosPermitidos.add(x +""+ y);
-                        if (dimensiones[x][y].getPieza() != null){
-                            if (dimensiones[x][y].getPieza().getLado() != turnoActual)
-                                break;
-                        }
-                    }
-                }
-
-                // ABAJO DERECHA
-                for(int x = coordenadaX + 1, y = coordenadaY + 1; x > coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y++)
-                {
-
-                    if (x > 7)
-                        break;
-
-                    if(y > 7)
-                        break;
-
-                   if (validarPiezaSeleccionada(x,y)){
-                        break;
-                    }else{
-                       movimientosPermitidos.add(x +""+ y);
-                       if (dimensiones[x][y].getPieza() != null){
-                           if (dimensiones[x][y].getPieza().getLado() != turnoActual)
-                               break;
-                       }
-                    }
-
-
-                }
-
-            }
-
-        return movimientosPermitidos;
+        return pieza.moverse(coordenadaX, coordenadaY);
 
     }
 
     public void jugada(int[] coordenadaOrigen, int[] coordenadaDestino)
     {
+
         int coordXOrigen = coordenadaOrigen[0];
         int coordYOrigen = coordenadaOrigen[1];
         int coordXDesti = coordenadaDestino[0];
