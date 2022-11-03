@@ -45,7 +45,7 @@ public class Peon extends Pieza
                 for (int j = coordenadaX + 1; j <= coordenadaX + movimientos[0]; j++)
                 {
 
-                    if (Tablero.validarPiezaSeleccionada(j,coordenadaY))
+                    if (Tablero.validarPiezaAliada(j,coordenadaY))
                         break;
 
                     movimientosPermitidos.add(j +""+ coordenadaY);
@@ -56,7 +56,7 @@ public class Peon extends Pieza
             else
             {
 
-                if (!Tablero.validarPiezaSeleccionada(coordenadaX + 1, coordenadaY))
+                if (!Tablero.validarPiezaAliada(coordenadaX + 1, coordenadaY))
                     movimientosPermitidos.add((coordenadaX + 1) +""+ coordenadaY);
 
             }
@@ -71,7 +71,7 @@ public class Peon extends Pieza
                 for (int j = coordenadaX - 1; j >= coordenadaX - movimientos[0]; j--)
                 {
 
-                    if (Tablero.validarPiezaSeleccionada(j,coordenadaY))
+                    if (Tablero.validarPiezaAliada(j,coordenadaY))
                         break;
 
                     movimientosPermitidos.add(j +""+ coordenadaY);
@@ -82,7 +82,7 @@ public class Peon extends Pieza
             else
             {
 
-                if (!Tablero.validarPiezaSeleccionada(coordenadaX - 1,coordenadaY))
+                if (!Tablero.validarPiezaAliada(coordenadaX - 1,coordenadaY))
                     movimientosPermitidos.add((coordenadaX - 1) +""+ coordenadaY);
 
             }

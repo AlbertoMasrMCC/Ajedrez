@@ -30,7 +30,7 @@ public class Torre extends Pieza
         for (int j = coordenadaX - 1; j >= coordenadaX - movimientos[0]; j--)
         {
 
-            if(j < 0 || Tablero.validarPiezaSeleccionada(j, coordenadaY))
+            if(j < 0 || Tablero.validarPiezaAliada(j, coordenadaY))
                 break;
 
             movimientosPermitidos.add(j +""+ coordenadaY);
@@ -44,7 +44,7 @@ public class Torre extends Pieza
         for (int j = coordenadaY + 1; j <= coordenadaY + movimientos[1]; j++)
         {
 
-            if(j > 7 || Tablero.validarPiezaSeleccionada(coordenadaX, j))
+            if(j > 7 || Tablero.validarPiezaAliada(coordenadaX, j))
                 break;
 
             movimientosPermitidos.add(coordenadaX +""+ j);
@@ -58,7 +58,7 @@ public class Torre extends Pieza
         for (int j = coordenadaX + 1; j <= coordenadaX + movimientos[2]; j++)
         {
 
-            if(j > 7 || Tablero.validarPiezaSeleccionada(j,coordenadaY))
+            if(j > 7 || Tablero.validarPiezaAliada(j,coordenadaY))
                 break;
 
             movimientosPermitidos.add(j +""+ coordenadaY);
@@ -72,7 +72,7 @@ public class Torre extends Pieza
         for (int j = coordenadaY - 1; j >= coordenadaY - movimientos[3]; j--)
         {
 
-            if(j < 0 || Tablero.validarPiezaSeleccionada(coordenadaX,j))
+            if(j < 0 || Tablero.validarPiezaAliada(coordenadaX,j))
                 break;
 
             movimientosPermitidos.add(coordenadaX +""+ j);

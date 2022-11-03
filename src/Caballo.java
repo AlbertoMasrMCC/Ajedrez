@@ -29,7 +29,7 @@ public class Caballo extends Pieza
             if(coordenadaY - 1 >= 0)
             {
 
-                if (!Tablero.validarPiezaSeleccionada(movimientoPosible, coordenadaY - 1))
+                if (!Tablero.validarPiezaAliada(movimientoPosible, coordenadaY - 1))
                     movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
 
             }
@@ -37,7 +37,7 @@ public class Caballo extends Pieza
             if(coordenadaY + 1 <= 7)
             {
 
-                if (!Tablero.validarPiezaSeleccionada(movimientoPosible, coordenadaY + 1))
+                if (!Tablero.validarPiezaAliada(movimientoPosible, coordenadaY + 1))
                     movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
 
             }
@@ -53,7 +53,7 @@ public class Caballo extends Pieza
             if(coordenadaX - 1 >= 0)
             {
 
-                if (!Tablero.validarPiezaSeleccionada(coordenadaX - 1, movimientoPosible))
+                if (!Tablero.validarPiezaAliada(coordenadaX - 1, movimientoPosible))
                     movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
 
             }
@@ -61,7 +61,7 @@ public class Caballo extends Pieza
             if(coordenadaX + 1 <= 7)
             {
 
-                if (!Tablero.validarPiezaSeleccionada(coordenadaX + 1, movimientoPosible))
+                if (!Tablero.validarPiezaAliada(coordenadaX + 1, movimientoPosible))
                     movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
 
             }
@@ -77,14 +77,14 @@ public class Caballo extends Pieza
             if(coordenadaY - 1 >= 0)
             {
 
-                if (!Tablero.validarPiezaSeleccionada(movimientoPosible, coordenadaY - 1))
+                if (!Tablero.validarPiezaAliada(movimientoPosible, coordenadaY - 1))
                     movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
             }
 
             if(coordenadaY + 1 <= 7)
             {
 
-                if (!Tablero.validarPiezaSeleccionada(movimientoPosible, coordenadaY + 1))
+                if (!Tablero.validarPiezaAliada(movimientoPosible, coordenadaY + 1))
                     movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
 
             }
@@ -100,14 +100,14 @@ public class Caballo extends Pieza
             if(coordenadaX - 1 >= 0)
             {
 
-                if (!Tablero.validarPiezaSeleccionada(coordenadaX - 1, movimientoPosible))
+                if (!Tablero.validarPiezaAliada(coordenadaX - 1, movimientoPosible))
                     movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
 
             }
 
             if(coordenadaX + 1 <= 7)
             {
-                if (!Tablero.validarPiezaSeleccionada(coordenadaX + 1, movimientoPosible))
+                if (!Tablero.validarPiezaAliada(coordenadaX + 1, movimientoPosible))
                     movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
             }
 

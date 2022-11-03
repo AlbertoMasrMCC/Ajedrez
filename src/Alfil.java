@@ -24,7 +24,7 @@ public class Alfil extends Pieza
         for(int x = coordenadaX - 1, y = coordenadaY + 1; x >= coordenadaX - movimientos[4] || y < coordenadaY - movimientos[4]; x--, y++)
         {
 
-            if (x < 0 || y > 7 || Tablero.validarPiezaSeleccionada(x, y))
+            if (x < 0 || y > 7 || Tablero.validarPiezaAliada(x, y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);
@@ -38,7 +38,7 @@ public class Alfil extends Pieza
         for(int x = coordenadaX - 1, y = coordenadaY - 1; x >= coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x--, y--)
         {
 
-            if (x < 0 || y < 0 || Tablero.validarPiezaSeleccionada(x,y))
+            if (x < 0 || y < 0 || Tablero.validarPiezaAliada(x,y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);
@@ -52,7 +52,7 @@ public class Alfil extends Pieza
         for(int x = coordenadaX + 1, y = coordenadaY - 1; x < coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y--)
         {
 
-            if (x > 7 || y < 0 || Tablero.validarPiezaSeleccionada(x,y))
+            if (x > 7 || y < 0 || Tablero.validarPiezaAliada(x,y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);
@@ -66,7 +66,7 @@ public class Alfil extends Pieza
         for(int x = coordenadaX + 1, y = coordenadaY + 1; x > coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y++)
         {
 
-            if (x > 7 || y > 7 || Tablero.validarPiezaSeleccionada(x,y))
+            if (x > 7 || y > 7 || Tablero.validarPiezaAliada(x,y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);

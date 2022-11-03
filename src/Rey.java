@@ -30,7 +30,7 @@ public class Rey extends Pieza
         for (int j = coordenadaX - 1; j >= coordenadaX - movimientos[0]; j--)
         {
 
-            if(j < 0 || Tablero.validarPiezaSeleccionada(j,coordenadaY))
+            if(j < 0 || Tablero.validarPiezaAliada(j,coordenadaY))
                 break;
 
             movimientosPermitidos.add(j +""+ coordenadaY);
@@ -44,7 +44,7 @@ public class Rey extends Pieza
         for (int j = coordenadaY + 1; j <= coordenadaY + movimientos[1]; j++)
         {
 
-            if(j > 7 || Tablero.validarPiezaSeleccionada(coordenadaX, j))
+            if(j > 7 || Tablero.validarPiezaAliada(coordenadaX, j))
                 break;
 
             movimientosPermitidos.add(coordenadaX +""+ j);
@@ -58,7 +58,7 @@ public class Rey extends Pieza
         for (int j = coordenadaX + 1; j <= coordenadaX + movimientos[2]; j++)
         {
 
-            if(j > 7 || Tablero.validarPiezaSeleccionada(j,coordenadaY))
+            if(j > 7 || Tablero.validarPiezaAliada(j,coordenadaY))
                 break;
 
             movimientosPermitidos.add(j +""+ coordenadaY);
@@ -72,7 +72,7 @@ public class Rey extends Pieza
         for (int j = coordenadaY - 1; j >= coordenadaY - movimientos[3]; j--)
         {
 
-            if(j < 0 || Tablero.validarPiezaSeleccionada(coordenadaX, j))
+            if(j < 0 || Tablero.validarPiezaAliada(coordenadaX, j))
                 break;
 
             movimientosPermitidos.add(coordenadaX +""+ j);
@@ -86,7 +86,7 @@ public class Rey extends Pieza
         for(int x = coordenadaX - 1, y = coordenadaY + 1; x >= coordenadaX - movimientos[4] || y < coordenadaY - movimientos[4]; x--, y++)
         {
 
-            if (x < 0 || y > 7 || Tablero.validarPiezaSeleccionada(x,y))
+            if (x < 0 || y > 7 || Tablero.validarPiezaAliada(x,y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);
@@ -100,7 +100,7 @@ public class Rey extends Pieza
         for(int x = coordenadaX - 1, y = coordenadaY - 1; x >= coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x--, y--)
         {
 
-            if (x < 0 || y < 0 || Tablero.validarPiezaSeleccionada(x,y))
+            if (x < 0 || y < 0 || Tablero.validarPiezaAliada(x,y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);
@@ -114,7 +114,7 @@ public class Rey extends Pieza
         for(int x = coordenadaX + 1, y = coordenadaY - 1; x < coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y--)
         {
 
-            if (x > 7 || y < 0 || Tablero.validarPiezaSeleccionada(x, y))
+            if (x > 7 || y < 0 || Tablero.validarPiezaAliada(x, y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);
@@ -128,7 +128,7 @@ public class Rey extends Pieza
         for(int x = coordenadaX + 1, y = coordenadaY + 1; x > coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y++)
         {
 
-            if (x > 7 || y > 7 || Tablero.validarPiezaSeleccionada(x,y))
+            if (x > 7 || y > 7 || Tablero.validarPiezaAliada(x,y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);
@@ -140,6 +140,170 @@ public class Rey extends Pieza
         /**********************************/
 
         return movimientosPermitidos;
+
+    }
+
+    public boolean validarMovimientosJaque(int coordenadaX, int coordenadaY)
+    {
+
+        int[] movimientos = {7, 7, 7, 7, 7};
+
+        // MOVIMIENTO HACIA ADELANTE
+        for (int j = coordenadaX - 1; j >= coordenadaX - movimientos[0]; j--)
+        {
+
+            if(j < 0 || Tablero.validarPiezaAliada(j, coordenadaY))
+                break;
+
+            if(Tablero.validarPiezaEnemiga(j, coordenadaY))
+            {
+
+                Pieza piezaObtenida = Tablero.obtenerPiezaJaque(j, coordenadaY);
+
+                if(piezaObtenida instanceof Reina || piezaObtenida instanceof Torre)
+                    return true;
+
+            }
+
+        }
+
+        // MOVIMIENTO HACIA LA DERECHA
+        for (int j = coordenadaY + 1; j <= coordenadaY + movimientos[1]; j++)
+        {
+
+            if(j > 7 || Tablero.validarPiezaAliada(coordenadaX, j))
+                break;
+
+
+            if(Tablero.validarPiezaEnemiga(coordenadaX, j))
+            {
+
+                Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX, j);
+
+                if(piezaObtenida instanceof Reina || piezaObtenida instanceof Torre)
+                    return true;
+
+            }
+
+        }
+
+        // MOVIMIENTO HACIA ABAJO
+        for (int j = coordenadaX + 1; j <= coordenadaX + movimientos[2]; j++)
+        {
+
+            if(j > 7 || Tablero.validarPiezaAliada(j,coordenadaY))
+                break;
+
+            if(Tablero.validarPiezaEnemiga(j, coordenadaY))
+            {
+
+                Pieza piezaObtenida = Tablero.obtenerPiezaJaque(j, coordenadaY);
+
+                if(piezaObtenida instanceof Reina || piezaObtenida instanceof Torre)
+                    return true;
+
+            }
+
+        }
+
+        // MOVIMIENTO HACIA LA IZQUIERDA
+        for (int j = coordenadaY - 1; j >= coordenadaY - movimientos[3]; j--)
+        {
+
+            if(j < 0 || Tablero.validarPiezaAliada(coordenadaX, j))
+                break;
+
+            if(Tablero.validarPiezaEnemiga(coordenadaX, j))
+            {
+
+                Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX, j);
+
+                if(piezaObtenida instanceof Reina || piezaObtenida instanceof Torre)
+                    return true;
+
+            }
+
+        }
+
+        /***** MOVIMIENTO EN DIAGONAL *****/
+        // ARRIBA DERECHA
+        for(int x = coordenadaX - 1, y = coordenadaY + 1; x >= coordenadaX - movimientos[4] || y < coordenadaY - movimientos[4]; x--, y++)
+        {
+
+            if (x < 0 || y > 7 || Tablero.validarPiezaAliada(x,y))
+                break;
+
+            if(Tablero.validarPiezaEnemiga(x, y))
+            {
+
+                Pieza piezaObtenida = Tablero.obtenerPiezaJaque(x, y);
+
+                if(piezaObtenida instanceof Reina || piezaObtenida instanceof Alfil)
+                    return true;
+
+            }
+
+        }
+
+        // ARRIBA IZQUIERDA
+        for(int x = coordenadaX - 1, y = coordenadaY - 1; x >= coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x--, y--)
+        {
+
+            if (x < 0 || y < 0 || Tablero.validarPiezaAliada(x,y))
+                break;
+
+            if(Tablero.validarPiezaEnemiga(x, y))
+            {
+
+                Pieza piezaObtenida = Tablero.obtenerPiezaJaque(x, y);
+
+                if(piezaObtenida instanceof Reina || piezaObtenida instanceof Alfil)
+                    return true;
+
+            }
+
+        }
+
+        // ABAJO IZQUIERDA
+        for(int x = coordenadaX + 1, y = coordenadaY - 1; x < coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y--)
+        {
+
+            if (x > 7 || y < 0 || Tablero.validarPiezaAliada(x, y))
+                break;
+
+            if(Tablero.validarPiezaEnemiga(x, y))
+            {
+
+                Pieza piezaObtenida = Tablero.obtenerPiezaJaque(x, y);
+
+                if(piezaObtenida instanceof Reina || piezaObtenida instanceof Alfil)
+                    return true;
+
+            }
+
+        }
+
+        // ABAJO DERECHA
+        for(int x = coordenadaX + 1, y = coordenadaY + 1; x > coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y++)
+        {
+
+            if (x > 7 || y > 7 || Tablero.validarPiezaAliada(x,y))
+                break;
+
+            if(Tablero.validarPiezaEnemiga(x, y))
+            {
+
+                Pieza piezaObtenida = Tablero.obtenerPiezaJaque(x, y);
+
+                if(piezaObtenida instanceof Reina || piezaObtenida instanceof Alfil)
+                    return true;
+
+            }
+
+        }
+        /**********************************/
+
+        return false;
 
     }
 

@@ -3,46 +3,69 @@ import java.util.ArrayList;
 public class Tablero
 {
 
-    static private Casilla[][] dimensiones;
+    static private Casilla[][] casillasTablero;
+
+    static private int[] reyNegras;
+
+    static private int[] reyBlancas;
 
     static private boolean turnoBlanca;
 
-    static private int[] numeros    = {1, 2, 3, 4, 5, 6, 7, 8};
+    final static private int[] numeros    = {1, 2, 3, 4, 5, 6, 7, 8};
 
-    static private String[] letras     = {"A", "B", "C", "D", "E", "F", "G", "H"};
+    final static private String[] letras  = {"A", "B", "C", "D", "E", "F", "G", "H"};
 
     public Tablero()
     {
 
-        dimensiones = new Casilla[8][8];
-        turnoBlanca = true;
+        casillasTablero = new Casilla[8][8];
+        turnoBlanca     = true;
+        reyNegras       = new int[2];
+        reyBlancas      = new int[2];
+        inicializarTablero();
 
     }
 
     public void inicializarTablero()
     {
 
-        boolean ocupado;
         int[] coordenadas = new int[2];
 
-        for (int i = 0; i < dimensiones.length; i++)
+        for (int i = 0; i < casillasTablero.length; i++)
         {
 
-            for(int j = 0; j < dimensiones[i].length ; j++)
+            for(int j = 0; j < casillasTablero[i].length ; j++)
             {
 
                 Pieza pieza = crearPieza(i, j);
 
-                ocupado = false;
-
-                if(pieza != null)
-                    ocupado = true;
-
                 coordenadas[0] = i;
                 coordenadas[1] = j;
 
-                Casilla casilla = new Casilla(pieza, ocupado, coordenadas);
-                dimensiones[i][j] = casilla;
+                Casilla casilla = new Casilla(pieza, coordenadas);
+                casillasTablero[i][j] = casilla;
+
+                if(pieza instanceof Rey)
+                {
+
+                    if(pieza.getLado() == 0)
+                    {
+
+                        reyNegras[0] = i;
+                        reyNegras[1] = j;
+
+                    }
+                    else
+                    {
+
+                        reyBlancas[0] = i;
+                        reyBlancas[1] = j;
+
+                    }
+
+                    System.out.println();
+
+                }
 
             }
 
@@ -64,9 +87,17 @@ public class Tablero
         {
 
             if(coordenadaX == 0)
+            {
+
                 pieza = new Torre(NEGRAS, true);
+
+            }
             else
+            {
+
                 pieza = new Torre(BLANCAS, true);
+
+            }
 
             return pieza;
 
@@ -78,9 +109,17 @@ public class Tablero
         {
 
             if(coordenadaX == 0)
+            {
+
                 pieza = new Caballo(NEGRAS, true);
+
+            }
             else
+            {
+
                 pieza = new Caballo(BLANCAS, true);
+
+            }
 
             return pieza;
 
@@ -92,9 +131,17 @@ public class Tablero
         {
 
             if(coordenadaX == 0)
+            {
+
                 pieza = new Alfil(NEGRAS, true);
+
+            }
             else
+            {
+
                 pieza = new Alfil(BLANCAS, true);
+
+            }
 
             return pieza;
 
@@ -106,9 +153,17 @@ public class Tablero
         {
 
             if(coordenadaX == 0)
+            {
+
                 pieza = new Rey(NEGRAS, true);
+
+            }
             else
+            {
+
                 pieza = new Rey(BLANCAS, true);
+
+            }
 
             return pieza;
 
@@ -120,9 +175,17 @@ public class Tablero
         {
 
             if(coordenadaX == 0)
+            {
+
                 pieza = new Reina(NEGRAS, true);
+
+            }
             else
+            {
+
                 pieza = new Reina(BLANCAS, true);
+
+            }
 
             return pieza;
 
@@ -134,9 +197,17 @@ public class Tablero
         {
 
             if(coordenadaX == 1)
+            {
+
                 pieza = new Peon(NEGRAS, true);
+
+            }
             else
+            {
+
                 pieza = new Peon(BLANCAS, true);
+
+            }
 
             return pieza;
 
@@ -153,15 +224,15 @@ public class Tablero
 
         boolean blancas = true;
 
-        for (int i = 0; i < dimensiones.length; i++)
+        for (int i = 0; i < casillasTablero.length; i++)
         {
 
             blancas = !blancas;
 
-            for(int j = 0; j < dimensiones[i].length; j++)
+            for(int j = 0; j < casillasTablero[i].length; j++)
             {
 
-                pintarPieza(dimensiones[i][j].getPieza(), blancas, false);
+                pintarPieza(casillasTablero[i][j].getPieza(), blancas, false);
 
                 blancas = !blancas;
 
@@ -196,12 +267,12 @@ public class Tablero
 
         boolean blancas = true;
 
-        for (int i = 0; i < dimensiones.length; i++)
+        for (int i = 0; i < casillasTablero.length; i++)
         {
 
             blancas = !blancas;
 
-            for(int j = 0; j < dimensiones[i].length; j++)
+            for(int j = 0; j < casillasTablero[i].length; j++)
             {
 
                 String movimientoActual = i +"" +j;
@@ -212,9 +283,9 @@ public class Tablero
                 {
 
                     if(movimientoActual.equals(coordenadaPiezaSeleccionada))
-                        pintarPieza(dimensiones[i][j].getPieza(), blancas, true);
+                        pintarPieza(casillasTablero[i][j].getPieza(), blancas, true);
                     else
-                        pintarPieza(dimensiones[i][j].getPieza(), blancas, false);
+                        pintarPieza(casillasTablero[i][j].getPieza(), blancas, false);
 
                 }
 
@@ -277,20 +348,15 @@ public class Tablero
 
     }
 
-    public static boolean validarPiezaSeleccionada(int coordenadaX, int coordenadaY)
+    public static boolean validarPiezaAliada(int coordenadaX, int coordenadaY)
     {
 
-        int turnoActual;
+        int turnoActual = turnoBlanca ? 1 :0;
 
-        if (turnoBlanca)
-            turnoActual = 1;
-        else
-            turnoActual = 0;
-
-        if (dimensiones[coordenadaX][coordenadaY].getPieza() == null)
+        if (casillasTablero[coordenadaX][coordenadaY].getPieza() == null)
             return false;
 
-        if (dimensiones[coordenadaX][coordenadaY].getPieza().getLado() != turnoActual)
+        if (casillasTablero[coordenadaX][coordenadaY].getPieza().getLado() != turnoActual)
             return false;
 
         return true;
@@ -300,27 +366,29 @@ public class Tablero
     public static boolean validarPiezaEnemiga(int coordenadaX, int coordenadaY)
     {
 
-        int turnoActual;
+        int turnoActual = turnoBlanca ? 1 :0;
 
-        if (turnoBlanca)
-            turnoActual = 1;
-        else
-            turnoActual = 0;
-
-        if(dimensiones[coordenadaX][coordenadaY].getPieza() == null)
+        if(casillasTablero[coordenadaX][coordenadaY].getPieza() == null)
             return false;
 
-        if (dimensiones[coordenadaX][coordenadaY].getPieza().getLado() == turnoActual)
+        if (casillasTablero[coordenadaX][coordenadaY].getPieza().getLado() == turnoActual)
             return false;
 
         return true;
 
     }
 
+    public static Pieza obtenerPiezaJaque(int coordenadaX, int coordenadaY)
+    {
+
+        return casillasTablero[coordenadaX][coordenadaY].getPieza();
+
+    }
+
     public ArrayList<String> movimientosPosible(int coordenadaX, int coordenadaY)
     {
 
-        Casilla casilla = dimensiones[coordenadaX][coordenadaY];
+        Casilla casilla = casillasTablero[coordenadaX][coordenadaY];
 
         Pieza pieza = casilla.getPieza();
 
@@ -336,8 +404,8 @@ public class Tablero
         int coordXDesti = coordenadaDestino[0];
         int coordYDesti = coordenadaDestino[1];
 
-        Casilla casillaOrigen = dimensiones[coordXOrigen][coordYOrigen];
-        Casilla casillaDestino = dimensiones[coordXDesti][coordYDesti];
+        Casilla casillaOrigen = casillasTablero[coordXOrigen][coordYOrigen];
+        Casilla casillaDestino = casillasTablero[coordXDesti][coordYDesti];
 
         Pieza piezaOrigen = casillaOrigen.getPieza();
 
@@ -347,10 +415,52 @@ public class Tablero
 
     }
 
-    public boolean validarJaque()
+    public boolean validarJaque(int[] coordenadaOrigen, int[] coordenadaDestino)
     {
 
-        return true;
+        int coordXOrigen = coordenadaOrigen[0];
+        int coordYOrigen = coordenadaOrigen[1];
+        int coordXDesti = coordenadaDestino[0];
+        int coordYDesti = coordenadaDestino[1];
+
+        Casilla tmpCasillaOrigen = casillasTablero[coordXOrigen][coordYOrigen];
+        Casilla tmpCasillaDestino = casillasTablero[coordXDesti][coordYDesti];
+
+        Pieza tmpPiezaOrigen = tmpCasillaOrigen.getPieza();
+        Pieza tmpPiezaDestino = tmpCasillaDestino.getPieza();
+
+        Rey rey;
+        int coordenadaX;
+        int coordenadaY;
+
+        if(turnoBlanca)
+        {
+
+            rey = (Rey) casillasTablero[reyBlancas[0]][reyBlancas[1]].getPieza();
+            coordenadaX = reyBlancas[0];
+            coordenadaY = reyBlancas[1];
+
+        }
+        else
+        {
+
+            rey = (Rey) casillasTablero[reyNegras[0]][reyNegras[1]].getPieza();
+            coordenadaX = reyNegras[0];
+            coordenadaY = reyNegras[1];
+
+        }
+
+        jugada(coordenadaOrigen, coordenadaDestino);
+
+        boolean jaque = rey.validarMovimientosJaque(coordenadaX, coordenadaY);
+
+        casillasTablero[coordXOrigen][coordYOrigen].setPieza(tmpPiezaOrigen);
+        casillasTablero[coordXDesti][coordYDesti].setPieza(tmpPiezaDestino);
+
+        if(jaque)
+            return true;
+        else
+            return false;
 
     }
 

@@ -9,23 +9,32 @@ public class Ajedrez
 
         Tablero tablero = new Tablero();
 
-        tablero.inicializarTablero();
-
-        tablero.mostrarTablero();
-
         do
         {
 
-            String jugador = "";
+            String jugador          = "";
+            String jugadorContrario = "";
 
             if(tablero.isTurnoBlanca())
-                jugador = "Jugador blancas";
+            {
+
+                jugador             = "Jugador blancas";
+                jugadorContrario    = "Jugador negras";
+
+            }
             else
-                jugador = "Jugador negras";
+            {
+
+                jugador             = "Jugador negras";
+                jugadorContrario    = "Jugador blancas";
+
+            }
+
+            tablero.mostrarTablero();
 
             int[] coordenadasOrigen = pedirPiezaMover(jugador, false);
 
-            if(!tablero.validarPiezaSeleccionada(coordenadasOrigen[0], coordenadasOrigen[1]))
+            if(!tablero.validarPiezaAliada(coordenadasOrigen[0], coordenadasOrigen[1]))
             {
 
                 System.out.println("Por favor seleccione las coordenadas de una de sus piezas");
@@ -57,6 +66,14 @@ public class Ajedrez
 
                 System.out.println("Seleccione una coordenada correcta.");
                 coordenadasDestino = pedirPiezaMover(jugador, true);
+
+            }
+
+            if(tablero.validarJaque(coordenadasOrigen, coordenadasDestino))
+            {
+
+                System.out.println("No es posible realizar ese movimiento ya que estarás en jaque.");
+                continue;
 
             }
 

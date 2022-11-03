@@ -23,7 +23,7 @@ public class Reina extends Pieza
         for (int j = coordenadaX - 1; j >= coordenadaX - movimientos[0]; j--)
         {
 
-            if(j < 0 || Tablero.validarPiezaSeleccionada(j, coordenadaY))
+            if(j < 0 || Tablero.validarPiezaAliada(j, coordenadaY))
                 break;
 
             movimientosPermitidos.add(j +""+ coordenadaY);
@@ -37,7 +37,7 @@ public class Reina extends Pieza
         for (int j = coordenadaY + 1; j <= coordenadaY + movimientos[1]; j++)
         {
 
-            if(j > 7 || Tablero.validarPiezaSeleccionada(coordenadaX, j))
+            if(j > 7 || Tablero.validarPiezaAliada(coordenadaX, j))
                 break;
 
             movimientosPermitidos.add(coordenadaX +""+ j);
@@ -51,7 +51,7 @@ public class Reina extends Pieza
         for (int j = coordenadaX + 1; j <= coordenadaX + movimientos[2]; j++)
         {
 
-            if(j > 7 || Tablero.validarPiezaSeleccionada(j,coordenadaY))
+            if(j > 7 || Tablero.validarPiezaAliada(j,coordenadaY))
                 break;
 
             movimientosPermitidos.add(j +""+ coordenadaY);
@@ -65,7 +65,7 @@ public class Reina extends Pieza
         for (int j = coordenadaY - 1; j >= coordenadaY - movimientos[3]; j--)
         {
 
-            if(j < 0 || Tablero.validarPiezaSeleccionada(coordenadaX,j))
+            if(j < 0 || Tablero.validarPiezaAliada(coordenadaX,j))
                 break;
 
             movimientosPermitidos.add(coordenadaX +""+ j);
@@ -80,7 +80,7 @@ public class Reina extends Pieza
         for(int x = coordenadaX - 1, y = coordenadaY + 1; x >= coordenadaX - movimientos[4] || y < coordenadaY - movimientos[4]; x--, y++)
         {
 
-            if (x < 0 || y > 7 || Tablero.validarPiezaSeleccionada(x, y))
+            if (x < 0 || y > 7 || Tablero.validarPiezaAliada(x, y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);
@@ -94,7 +94,7 @@ public class Reina extends Pieza
         for(int x = coordenadaX - 1, y = coordenadaY - 1; x >= coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x--, y--)
         {
 
-            if (x < 0 || y < 0 || Tablero.validarPiezaSeleccionada(x, y))
+            if (x < 0 || y < 0 || Tablero.validarPiezaAliada(x, y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);
@@ -108,7 +108,7 @@ public class Reina extends Pieza
         for(int x = coordenadaX + 1, y = coordenadaY - 1; x < coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y--)
         {
 
-            if (x > 7 || y < 0 || Tablero.validarPiezaSeleccionada(x, y))
+            if (x > 7 || y < 0 || Tablero.validarPiezaAliada(x, y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);
@@ -122,7 +122,7 @@ public class Reina extends Pieza
         for(int x = coordenadaX + 1, y = coordenadaY + 1; x > coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y++)
         {
 
-            if (x > 7 || y > 7 || Tablero.validarPiezaSeleccionada(x, y))
+            if (x > 7 || y > 7 || Tablero.validarPiezaAliada(x, y))
                 break;
 
             movimientosPermitidos.add(x +""+ y);
