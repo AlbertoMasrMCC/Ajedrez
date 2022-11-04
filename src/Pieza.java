@@ -11,6 +11,10 @@ public abstract class Pieza
 
     public abstract ArrayList<String> moverse(int coordenadaX, int coordenadaY);
 
+    public abstract boolean validarMovimientosJaque(int coordenadaX, int coordenadaY);
+
+    public abstract ArrayList<String> moverseAtacaRey(int coordenadaX, int coordenadaY);
+
     public abstract void pintarse(boolean blancas, boolean seleccionada);
 
     public int getLado() {

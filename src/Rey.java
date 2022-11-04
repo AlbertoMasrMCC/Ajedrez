@@ -125,7 +125,7 @@ public class Rey extends Pieza
         }
 
         // ABAJO DERECHA
-        for(int x = coordenadaX + 1, y = coordenadaY + 1; x > coordenadaX - movimientos[4] || y >= coordenadaY - movimientos[4]; x++, y++)
+        for(int x = coordenadaX + 1, y = coordenadaY + 1; x <= coordenadaX + movimientos[4] || y <= coordenadaY + movimientos[4]; x++, y++)
         {
 
             if (x > 7 || y > 7 || Tablero.validarPiezaAliada(x,y))
@@ -143,6 +143,7 @@ public class Rey extends Pieza
 
     }
 
+    @Override
     public boolean validarMovimientosJaque(int coordenadaX, int coordenadaY)
     {
 
@@ -162,6 +163,8 @@ public class Rey extends Pieza
 
                 if(piezaObtenida instanceof Reina || piezaObtenida instanceof Torre)
                     return true;
+
+                break;
 
             }
 
@@ -183,6 +186,8 @@ public class Rey extends Pieza
                 if(piezaObtenida instanceof Reina || piezaObtenida instanceof Torre)
                     return true;
 
+                break;
+
             }
 
         }
@@ -202,6 +207,8 @@ public class Rey extends Pieza
                 if(piezaObtenida instanceof Reina || piezaObtenida instanceof Torre)
                     return true;
 
+                break;
+
             }
 
         }
@@ -220,6 +227,8 @@ public class Rey extends Pieza
 
                 if(piezaObtenida instanceof Reina || piezaObtenida instanceof Torre)
                     return true;
+
+                break;
 
             }
 
@@ -241,6 +250,8 @@ public class Rey extends Pieza
                 if(piezaObtenida instanceof Reina || piezaObtenida instanceof Alfil)
                     return true;
 
+                break;
+
             }
 
         }
@@ -259,6 +270,8 @@ public class Rey extends Pieza
 
                 if(piezaObtenida instanceof Reina || piezaObtenida instanceof Alfil)
                     return true;
+
+                break;
 
             }
 
@@ -279,6 +292,8 @@ public class Rey extends Pieza
                 if(piezaObtenida instanceof Reina || piezaObtenida instanceof Alfil)
                     return true;
 
+                break;
+
             }
 
         }
@@ -298,12 +313,24 @@ public class Rey extends Pieza
                 if(piezaObtenida instanceof Reina || piezaObtenida instanceof Alfil)
                     return true;
 
+                break;
+
             }
 
         }
         /**********************************/
 
         return false;
+
+    }
+
+    @Override
+    public ArrayList<String> moverseAtacaRey(int coordenadaX, int coordenadaY)
+    {
+
+        ArrayList<String> movimientosPermitidos = new ArrayList<String>();
+
+        return movimientosPermitidos;
 
     }
 

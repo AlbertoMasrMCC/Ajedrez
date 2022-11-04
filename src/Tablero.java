@@ -5,9 +5,9 @@ public class Tablero
 
     static private Casilla[][] casillasTablero;
 
-    static private int[] reyNegras;
+    static private ArrayList<Casilla> piezasNegras;
 
-    static private int[] reyBlancas;
+    static private ArrayList<Casilla> piezasBlancas;
 
     static private boolean turnoBlanca;
 
@@ -20,16 +20,14 @@ public class Tablero
 
         casillasTablero = new Casilla[8][8];
         turnoBlanca     = true;
-        reyNegras       = new int[2];
-        reyBlancas      = new int[2];
+        piezasNegras    = new ArrayList<>();
+        piezasBlancas   = new ArrayList<>();
         inicializarTablero();
 
     }
 
     public void inicializarTablero()
     {
-
-        int[] coordenadas = new int[2];
 
         for (int i = 0; i < casillasTablero.length; i++)
         {
@@ -39,27 +37,24 @@ public class Tablero
 
                 Pieza pieza = crearPieza(i, j);
 
-                coordenadas[0] = i;
-                coordenadas[1] = j;
+                int[]coordenadas = {i , j};
 
                 Casilla casilla = new Casilla(pieza, coordenadas);
                 casillasTablero[i][j] = casilla;
 
-                if(pieza instanceof Rey)
+                if(pieza != null)
                 {
 
                     if(pieza.getLado() == 0)
                     {
 
-                        reyNegras[0] = i;
-                        reyNegras[1] = j;
+                        piezasNegras.add(casilla);
 
                     }
                     else
                     {
 
-                        reyBlancas[0] = i;
-                        reyBlancas[1] = j;
+                        piezasBlancas.add(casilla);
 
                     }
 
@@ -70,6 +65,44 @@ public class Tablero
             }
 
         }
+
+        ordenarArreglosPiezas();
+
+    }
+
+    public void ordenarArreglosPiezas()
+    {
+
+        ArrayList<Casilla> tmpPiezasNegras = new ArrayList<>();
+        ArrayList<Casilla> tmpPiezasBlancas = new ArrayList<>();
+
+        // Rey negras
+        tmpPiezasNegras.add(piezasNegras.get(3));
+        piezasNegras.remove(3);
+
+        // Rey blancas
+        tmpPiezasBlancas.add(piezasBlancas.get(11));
+        piezasBlancas.remove(11);
+
+        for (Casilla piezaNegras: piezasNegras)
+        {
+
+            tmpPiezasNegras.add(piezaNegras);
+
+        }
+
+        for (Casilla piezaBlancas: piezasBlancas)
+        {
+
+            tmpPiezasBlancas.add(piezaBlancas);
+
+        }
+
+        piezasNegras.clear();
+        piezasBlancas.clear();
+
+        piezasNegras = tmpPiezasNegras;
+        piezasBlancas = tmpPiezasBlancas;
 
     }
 
@@ -401,18 +434,24 @@ public class Tablero
         if(piezaOrigen instanceof Rey)
         {
 
+            int[] cordenadasPiezas;
+
             if(piezaOrigen.getLado() == 0)
             {
 
-                reyNegras[0] = coordXDesti;
-                reyNegras[1] = coordYDesti;
+                cordenadasPiezas = piezasNegras.get(0).getCoordenadas();
+
+                cordenadasPiezas[0] = coordXDesti;
+                cordenadasPiezas[1] = coordYDesti;
 
             }
             else
             {
 
-                reyBlancas[0] = coordXDesti;
-                reyBlancas[1] = coordYDesti;
+                cordenadasPiezas = piezasBlancas.get(0).getCoordenadas();
+
+                cordenadasPiezas[0] = coordXDesti;
+                cordenadasPiezas[1] = coordYDesti;
 
             }
 
@@ -457,16 +496,22 @@ public class Tablero
         int coordenadaX;
         int coordenadaY;
 
+        int[] cordenadasPiezas;
+
         if(turnoBlanca)
         {
 
-            rey = (Rey) casillasTablero[reyBlancas[0]][reyBlancas[1]].getPieza();
+            cordenadasPiezas = piezasBlancas.get(0).getCoordenadas();
+
+            rey = (Rey) casillasTablero[cordenadasPiezas[0]][cordenadasPiezas[1]].getPieza();
 
         }
         else
         {
 
-            rey = (Rey) casillasTablero[reyNegras[0]][reyNegras[1]].getPieza();
+            cordenadasPiezas = piezasNegras.get(0).getCoordenadas();
+
+            rey = (Rey) casillasTablero[cordenadasPiezas[0]][cordenadasPiezas[1]].getPieza();
 
         }
 
@@ -475,15 +520,15 @@ public class Tablero
         if(turnoBlanca)
         {
 
-            coordenadaX = reyBlancas[0];
-            coordenadaY = reyBlancas[1];
+            coordenadaX = cordenadasPiezas[0];
+            coordenadaY = cordenadasPiezas[1];
 
         }
         else
         {
 
-            coordenadaX = reyNegras[0];
-            coordenadaY = reyNegras[1];
+            coordenadaX = cordenadasPiezas[0];
+            coordenadaY = cordenadasPiezas[1];
 
         }
 
@@ -498,15 +543,15 @@ public class Tablero
             if(tmpPiezaOrigen.getLado() == 0)
             {
 
-                reyNegras[0] = coordXOrigen;
-                reyNegras[1] = coordYOrigen;
+                cordenadasPiezas[0] = coordXOrigen;
+                cordenadasPiezas[1] = coordYOrigen;
 
             }
             else
             {
 
-                reyBlancas[0] = coordXOrigen;
-                reyBlancas[1] = coordYOrigen;
+                cordenadasPiezas[0] = coordXOrigen;
+                cordenadasPiezas[1] = coordYOrigen;
 
             }
 
@@ -526,20 +571,26 @@ public class Tablero
         int coordenadaX;
         int coordenadaY;
 
+        int[] cordenadasPiezas;
+
         if(turnoBlanca)
         {
 
-            rey = (Rey) casillasTablero[reyBlancas[0]][reyBlancas[1]].getPieza();
-            coordenadaX = reyBlancas[0];
-            coordenadaY = reyBlancas[1];
+            cordenadasPiezas = piezasBlancas.get(0).getCoordenadas();
+
+            rey = (Rey) casillasTablero[cordenadasPiezas[0]][cordenadasPiezas[1]].getPieza();
+            coordenadaX = cordenadasPiezas[0];
+            coordenadaY = cordenadasPiezas[1];
 
         }
         else
         {
 
-            rey = (Rey) casillasTablero[reyNegras[0]][reyNegras[1]].getPieza();
-            coordenadaX = reyNegras[0];
-            coordenadaY = reyNegras[1];
+            cordenadasPiezas = piezasNegras.get(0).getCoordenadas();
+
+            rey = (Rey) casillasTablero[cordenadasPiezas[0]][cordenadasPiezas[1]].getPieza();
+            coordenadaX = cordenadasPiezas[0];
+            coordenadaY = cordenadasPiezas[1];
 
         }
 
@@ -552,11 +603,123 @@ public class Tablero
 
     }
 
-
-    public boolean validarJaqueMate()
+    public boolean validarJaqueMate(int[] coordenadaPiezaPeligrosa)
     {
 
-        return false;
+        if(!validarJaqueMateRey())
+            return false;
+
+        if(!validarJaqueMatePiezaPeligrosa(coordenadaPiezaPeligrosa))
+            return false;
+
+        if(!validarJaqueMateBloquear(coordenadaPiezaPeligrosa))
+            return false;
+
+        return true;
+
+    }
+
+    public boolean validarJaqueMateRey()
+    {
+
+        int[] coordenadasRey;
+        Pieza rey;
+
+        if(turnoBlanca)
+        {
+
+            coordenadasRey  = piezasBlancas.get(0).getCoordenadas();
+            rey             = piezasBlancas.get(0).getPieza();
+
+        }
+        else
+        {
+
+            coordenadasRey  = piezasNegras.get(0).getCoordenadas();
+            rey             = piezasNegras.get(0).getPieza();
+
+        }
+
+        ArrayList<String> movimientosPosible = rey.moverse(coordenadasRey[0], coordenadasRey[1]);
+
+        for (String movimientoRey: movimientosPosible)
+        {
+
+            int[] coordenadasDestinoRey = {Integer.parseInt(Character.toString(movimientoRey.charAt(0))), Integer.parseInt(Character.toString(movimientoRey.charAt(1)))};
+
+            if(!validarJaque(coordenadasRey, coordenadasDestinoRey, 1))
+                return false;
+
+        }
+
+        return true;
+
+    }
+
+    public boolean validarJaqueMatePiezaPeligrosa(int[] coordenadaPiezaPeligrosa)
+    {
+
+        Pieza piezaPeligrosa = casillasTablero[coordenadaPiezaPeligrosa[0]][coordenadaPiezaPeligrosa[1]].getPieza();
+
+        setTurnoBlanca(!turnoBlanca);
+
+        boolean jaque = piezaPeligrosa.validarMovimientosJaque(coordenadaPiezaPeligrosa[0], coordenadaPiezaPeligrosa[1]);
+
+        setTurnoBlanca(!turnoBlanca);
+
+        if(jaque)
+            return false;
+        else
+            return true;
+
+    }
+
+    public boolean validarJaqueMateBloquear(int[] coordenadaPiezaPeligrosa)
+    {
+
+        Pieza piezaPeligrosa = casillasTablero[coordenadaPiezaPeligrosa[0]][coordenadaPiezaPeligrosa[1]].getPieza();
+
+        setTurnoBlanca(!turnoBlanca);
+
+        ArrayList<String> movimientosPiezaPeligrosa = piezaPeligrosa.moverseAtacaRey(coordenadaPiezaPeligrosa[0], coordenadaPiezaPeligrosa[1]);
+
+        ArrayList<Casilla> piezasValidar;
+
+        if(piezaPeligrosa.getLado() == 0)
+            piezasValidar = piezasBlancas;
+        else
+            piezasValidar = piezasNegras;
+
+        for (Casilla piezasEnemigas: piezasValidar)
+        {
+
+            Pieza piezaEnemiga      = piezasEnemigas.getPieza();
+
+            if(piezaEnemiga instanceof Rey)
+                continue;
+
+            int[] coordenadaEnemiga = piezasEnemigas.getCoordenadas();
+
+            ArrayList<String> movimientosPiezaEnemiga = piezaEnemiga.moverse(coordenadaEnemiga[0], coordenadaEnemiga[1]);
+
+            for (String movimientoEnemigo: movimientosPiezaEnemiga)
+            {
+
+                if(movimientosPiezaPeligrosa.contains(movimientoEnemigo))
+                {
+
+                    setTurnoBlanca(!turnoBlanca);
+                    return false;
+
+                }
+
+            }
+
+        }
+
+        setTurnoBlanca(!turnoBlanca);
+
+        return true;
 
     }
 
@@ -574,12 +737,18 @@ public class Tablero
 
     }
 
-    public static int[] getNumeros() {
+    public static int[] getNumeros()
+    {
+
         return numeros;
+
     }
 
-    public static String[] getLetras() {
+    public static String[] getLetras()
+    {
+
         return letras;
+
     }
 
 }

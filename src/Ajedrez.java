@@ -9,6 +9,8 @@ public class Ajedrez
 
         Tablero tablero = new Tablero();
 
+        tablero.mostrarTablero();
+
         while (true)
         {
 
@@ -29,8 +31,6 @@ public class Ajedrez
                 jugadorContrario    = "Jugador blancas";
 
             }
-
-            tablero.mostrarTablero();
 
             int[] coordenadasOrigen = pedirPiezaMover(jugador, false);
 
@@ -56,8 +56,10 @@ public class Ajedrez
 
             tablero.mostrarTablero(movimientosPermitidos, coordenadaPiezaSeleccionada);
 
-            if(!deseaContinuar())
+            if(!deseaContinuar()) {
+                tablero.mostrarTablero();
                 continue;
+            }
 
             int[] coordenadasDestino = pedirPiezaMover(jugador, true);
 
@@ -71,7 +73,7 @@ public class Ajedrez
 
             if(tablero.validarJaque(coordenadasOrigen, coordenadasDestino, 1))
             {
-
+                tablero.mostrarTablero();
                 System.out.println(jugador +" no es posible realizar ese movimiento ya que estarás en jaque.");
                 continue;
 
@@ -86,8 +88,13 @@ public class Ajedrez
             if(tablero.validarJaque(coordenadasOrigen, coordenadasDestino, 2))
             {
 
-                if(tablero.validarJaqueMate())
+                if(tablero.validarJaqueMate(coordenadasDestino))
+                {
+
+                    System.out.println("Jaque Mate, gana el jugador "+ jugadorContrario);
                     break;
+
+                }
 
                 System.out.println(jugadorContrario +" estás en jaque.");
 

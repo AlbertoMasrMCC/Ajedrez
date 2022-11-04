@@ -13,10 +13,6 @@ public class Casilla
 
     }
 
-    public Pieza getPieza() {
-        return pieza;
-    }
-
     public void pintarse(boolean blancas)
     {
 
@@ -35,16 +31,32 @@ public class Casilla
 
     }
 
-    public void setPieza(Pieza pieza) {
+    public Pieza getPieza()
+    {
+
+        return pieza;
+
+    }
+
+    public void setPieza(Pieza pieza)
+    {
+
         this.pieza = pieza;
+
     }
 
-    public int[] getCoordenadas() {
+    public int[] getCoordenadas()
+    {
+
         return coordenadas;
+
     }
 
-    public void setCoordenadas(int[] coordenadas) {
+    public void setCoordenadas(int[] coordenadas)
+    {
+
         this.coordenadas = coordenadas;
+
     }
 
 }
