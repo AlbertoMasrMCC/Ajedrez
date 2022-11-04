@@ -9,7 +9,7 @@ public class Ajedrez
 
         Tablero tablero = new Tablero();
 
-        do
+        while (true)
         {
 
             String jugador          = "";
@@ -69,10 +69,10 @@ public class Ajedrez
 
             }
 
-            if(tablero.validarJaque(coordenadasOrigen, coordenadasDestino))
+            if(tablero.validarJaque(coordenadasOrigen, coordenadasDestino, 1))
             {
 
-                System.out.println("No es posible realizar ese movimiento ya que estarás en jaque.");
+                System.out.println(jugador +" no es posible realizar ese movimiento ya que estarás en jaque.");
                 continue;
 
             }
@@ -83,7 +83,17 @@ public class Ajedrez
 
             tablero.setTurnoBlanca(!tablero.isTurnoBlanca());
 
-        }while(!tablero.validarJaqueMate());
+            if(tablero.validarJaque(coordenadasOrigen, coordenadasDestino, 2))
+            {
+
+                if(tablero.validarJaqueMate())
+                    break;
+
+                System.out.println(jugadorContrario +" estás en jaque.");
+
+            }
+
+        }
 
     }
 

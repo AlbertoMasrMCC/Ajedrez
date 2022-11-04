@@ -232,7 +232,7 @@ public class Tablero
             for(int j = 0; j < casillasTablero[i].length; j++)
             {
 
-                pintarPieza(casillasTablero[i][j].getPieza(), blancas, false);
+                pintarPieza(casillasTablero[i][j], blancas, false);
 
                 blancas = !blancas;
 
@@ -283,9 +283,9 @@ public class Tablero
                 {
 
                     if(movimientoActual.equals(coordenadaPiezaSeleccionada))
-                        pintarPieza(casillasTablero[i][j].getPieza(), blancas, true);
+                        pintarPieza(casillasTablero[i][j], blancas, true);
                     else
-                        pintarPieza(casillasTablero[i][j].getPieza(), blancas, false);
+                        pintarPieza(casillasTablero[i][j], blancas, false);
 
                 }
 
@@ -314,30 +314,19 @@ public class Tablero
 
     }
 
-    public void pintarPieza(Pieza pieza, boolean blancas, boolean seleccionada)
+    public void pintarPieza(Casilla casilla, boolean blancas, boolean seleccionada)
     {
 
-        if(pieza == null)
+        if(casilla.getPieza() == null)
         {
 
-            if(blancas)
-            {
-
-                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;250m"+" ♜ " + "\u001B[0m");
-
-            }
-            else
-            {
-
-                System.out.print("\u001b[48;5;8m"+"\u001b[38;5;8m"+" ♜ "+"\u001B[0m");
-
-            }
+            casilla.pintarse(blancas);
 
             return;
 
         }
 
-        pieza.pintarse(blancas, seleccionada);
+        casilla.getPieza().pintarse(blancas, seleccionada);
 
     }
 
@@ -409,13 +398,48 @@ public class Tablero
 
         Pieza piezaOrigen = casillaOrigen.getPieza();
 
+        if(piezaOrigen instanceof Rey)
+        {
+
+            if(piezaOrigen.getLado() == 0)
+            {
+
+                reyNegras[0] = coordXDesti;
+                reyNegras[1] = coordYDesti;
+
+            }
+            else
+            {
+
+                reyBlancas[0] = coordXDesti;
+                reyBlancas[1] = coordYDesti;
+
+            }
+
+        }
+
         casillaDestino.setPieza(piezaOrigen);
 
         casillaOrigen.setPieza(null);
 
     }
 
-    public boolean validarJaque(int[] coordenadaOrigen, int[] coordenadaDestino)
+    public boolean validarJaque(int[] coordenadaOrigen, int[] coordenadaDestino, int tipoValidacion)
+    {
+
+        if(tipoValidacion == 1)
+            if(validarJaqueAlMoverPiezaPropia(coordenadaOrigen, coordenadaDestino))
+                return true;
+
+        if(tipoValidacion == 2)
+            if(validarJaqueAlMoverPieza())
+                return true;
+
+        return false;
+
+    }
+
+    public boolean validarJaqueAlMoverPiezaPropia(int[] coordenadaOrigen, int[] coordenadaDestino)
     {
 
         int coordXOrigen = coordenadaOrigen[0];
@@ -428,6 +452,75 @@ public class Tablero
 
         Pieza tmpPiezaOrigen = tmpCasillaOrigen.getPieza();
         Pieza tmpPiezaDestino = tmpCasillaDestino.getPieza();
+
+        Rey rey;
+        int coordenadaX;
+        int coordenadaY;
+
+        if(turnoBlanca)
+        {
+
+            rey = (Rey) casillasTablero[reyBlancas[0]][reyBlancas[1]].getPieza();
+
+        }
+        else
+        {
+
+            rey = (Rey) casillasTablero[reyNegras[0]][reyNegras[1]].getPieza();
+
+        }
+
+        jugada(coordenadaOrigen, coordenadaDestino);
+
+        if(turnoBlanca)
+        {
+
+            coordenadaX = reyBlancas[0];
+            coordenadaY = reyBlancas[1];
+
+        }
+        else
+        {
+
+            coordenadaX = reyNegras[0];
+            coordenadaY = reyNegras[1];
+
+        }
+
+        boolean jaque = rey.validarMovimientosJaque(coordenadaX, coordenadaY);
+
+        casillasTablero[coordXOrigen][coordYOrigen].setPieza(tmpPiezaOrigen);
+        casillasTablero[coordXDesti][coordYDesti].setPieza(tmpPiezaDestino);
+
+        if(tmpPiezaOrigen instanceof Rey)
+        {
+
+            if(tmpPiezaOrigen.getLado() == 0)
+            {
+
+                reyNegras[0] = coordXOrigen;
+                reyNegras[1] = coordYOrigen;
+
+            }
+            else
+            {
+
+                reyBlancas[0] = coordXOrigen;
+                reyBlancas[1] = coordYOrigen;
+
+            }
+
+        }
+
+        if(jaque)
+            return true;
+        else
+            return false;
+
+    }
+
+    public boolean validarJaqueAlMoverPieza()
+    {
 
         Rey rey;
         int coordenadaX;
@@ -450,12 +543,7 @@ public class Tablero
 
         }
 
-        jugada(coordenadaOrigen, coordenadaDestino);
-
         boolean jaque = rey.validarMovimientosJaque(coordenadaX, coordenadaY);
-
-        casillasTablero[coordXOrigen][coordYOrigen].setPieza(tmpPiezaOrigen);
-        casillasTablero[coordXDesti][coordYDesti].setPieza(tmpPiezaDestino);
 
         if(jaque)
             return true;
@@ -463,6 +551,7 @@ public class Tablero
             return false;
 
     }
+
 
     public boolean validarJaqueMate()
     {
