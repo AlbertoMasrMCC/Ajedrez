@@ -3,11 +3,10 @@ import java.util.ArrayList;
 public class Torre extends Pieza
 {
 
-    public Torre(int lado, boolean vivo)
+    public Torre(int color)
     {
 
-        this.lado           = lado;
-        this.vivo           = vivo;
+        this.color = color;
 
     }
 
@@ -22,7 +21,7 @@ public class Torre extends Pieza
     public ArrayList<String> moverse(int coordenadaX, int coordenadaY)
     {
 
-        int[] movimientos = getMovimientos();
+        int[] movimientos = obtenerMovimientos();
 
         ArrayList<String> movimientosPermitidos = new ArrayList<String>();
 
@@ -271,7 +270,7 @@ public class Torre extends Pieza
     public ArrayList<String> moverseAtacaRey(int coordenadaX, int coordenadaY)
     {
 
-        int[] movimientos = getMovimientos();
+        int[] movimientos = obtenerMovimientos();
 
         ArrayList<String> movimientosPermitidos = new ArrayList<String>();
 
@@ -298,6 +297,8 @@ public class Torre extends Pieza
 
         }
 
+        movimientosPermitidos.clear();
+
         // MOVIMIENTO HACIA LA DERECHA
         for (int j = coordenadaY + 1; j <= coordenadaY + movimientos[1]; j++)
         {
@@ -321,6 +322,8 @@ public class Torre extends Pieza
 
         }
 
+        movimientosPermitidos.clear();
+
         // MOVIMIENTO HACIA ABAJO
         for (int j = coordenadaX + 1; j <= coordenadaX + movimientos[2]; j++)
         {
@@ -343,6 +346,8 @@ public class Torre extends Pieza
             }
 
         }
+
+        movimientosPermitidos.clear();
 
         // MOVIMIENTO HACIA LA IZQUIERDA
         for (int j = coordenadaY - 1; j >= coordenadaY - movimientos[3]; j--)
@@ -389,7 +394,7 @@ public class Torre extends Pieza
         if(blancas)
         {
 
-            if(lado == NEGRAS)
+            if(color == NEGRAS)
                 System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♜ "+"\u001B[0m" );
             else
                 System.out.print("\u001b[48;5;7m"+"\u001b[38;5;255m"+" ♜ "+"\u001B[0m");
@@ -398,7 +403,7 @@ public class Torre extends Pieza
         else
         {
 
-            if (lado == NEGRAS)
+            if (color == NEGRAS)
                 System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♜ "+"\u001B[0m");
             else
                 System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♜ "+"\u001B[0m");
@@ -408,7 +413,7 @@ public class Torre extends Pieza
     }
 
     @Override
-    public int[] getMovimientos()
+    public int[] obtenerMovimientos()
     {
 
         int[] movimientos = {7, 7, 7, 7, 0};

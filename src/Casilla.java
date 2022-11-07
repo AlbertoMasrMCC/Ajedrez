@@ -31,31 +31,24 @@ public class Casilla
 
     }
 
-    public Pieza getPieza()
+    public Pieza obtenerPieza()
     {
 
         return pieza;
 
     }
 
-    public void setPieza(Pieza pieza)
+    public void establecerPieza(Pieza pieza)
     {
 
         this.pieza = pieza;
 
     }
 
-    public int[] getCoordenadas()
+    public int[] obtenerCoordenadas()
     {
 
         return coordenadas;
-
-    }
-
-    public void setCoordenadas(int[] coordenadas)
-    {
-
-        this.coordenadas = coordenadas;
 
     }
 

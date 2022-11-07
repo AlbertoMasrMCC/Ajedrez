@@ -3,11 +3,10 @@ import java.util.ArrayList;
 public class Alfil extends Pieza
 {
 
-    public Alfil(int lado, boolean vivo)
+    public Alfil(int color)
     {
 
-        this.lado           = lado;
-        this.vivo           = vivo;
+        this.color = color;
 
     }
 
@@ -15,7 +14,7 @@ public class Alfil extends Pieza
     public ArrayList<String> moverse(int coordenadaX, int coordenadaY)
     {
 
-        int[] movimientos = getMovimientos();
+        int[] movimientos = obtenerMovimientos();
 
         ArrayList<String> movimientosPermitidos = new ArrayList<String>();
 
@@ -266,7 +265,7 @@ public class Alfil extends Pieza
     public ArrayList<String> moverseAtacaRey(int coordenadaX, int coordenadaY)
     {
 
-        int[] movimientos = getMovimientos();
+        int[] movimientos = obtenerMovimientos();
 
         ArrayList<String> movimientosPermitidos = new ArrayList<String>();
 
@@ -384,7 +383,7 @@ public class Alfil extends Pieza
         if(blancas)
         {
 
-            if(lado == NEGRAS)
+            if(color == NEGRAS)
                 System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♝ "+"\u001B[0m" );
             else
                 System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♝ "+"\u001B[0m");
@@ -393,7 +392,7 @@ public class Alfil extends Pieza
         else
         {
 
-            if (lado == NEGRAS)
+            if (color == NEGRAS)
                 System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♝ "+"\u001B[0m");
             else
                 System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♝ "+"\u001B[0m");
@@ -403,7 +402,7 @@ public class Alfil extends Pieza
     }
 
     @Override
-    public int[] getMovimientos()
+    public int[] obtenerMovimientos()
     {
 
         int[] movimientos = {0, 0, 0, 0, 7};

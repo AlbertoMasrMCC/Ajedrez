@@ -3,11 +3,10 @@ import java.util.ArrayList;
 public class Caballo extends Pieza
 {
 
-    public Caballo(int lado, boolean vivo)
+    public Caballo(int color)
     {
 
-        this.lado           = lado;
-        this.vivo           = vivo;
+        this.color = color;
 
     }
     @Override
@@ -16,7 +15,7 @@ public class Caballo extends Pieza
 
         int movimientoPosible;
 
-        int[] movimientos = getMovimientos();
+        int[] movimientos = obtenerMovimientos();
 
         ArrayList<String> movimientosPermitidos = new ArrayList<String>();
 
@@ -304,7 +303,7 @@ public class Caballo extends Pieza
 
         int movimientoPosible;
 
-        int[] movimientos = getMovimientos();
+        int[] movimientos = obtenerMovimientos();
 
         ArrayList<String> movimientosPermitidos = new ArrayList<String>();
 
@@ -529,7 +528,7 @@ public class Caballo extends Pieza
         if(blancas)
         {
 
-            if(lado == NEGRAS)
+            if(color == NEGRAS)
                 System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♞ "+"\u001B[0m" );
             else
                 System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♞ "+"\u001B[0m");
@@ -538,7 +537,7 @@ public class Caballo extends Pieza
         else
         {
 
-            if (lado == NEGRAS)
+            if (color == NEGRAS)
                 System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♞ "+"\u001B[0m");
             else
                 System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♞ "+"\u001B[0m");
@@ -548,7 +547,7 @@ public class Caballo extends Pieza
     }
 
     @Override
-    public int[] getMovimientos()
+    public int[] obtenerMovimientos()
     {
 
         int[] movimientos = {2, 2, 2, 2, 0};

@@ -17,7 +17,7 @@ public class Ajedrez
             String jugador          = "";
             String jugadorContrario = "";
 
-            if(tablero.isTurnoBlanca())
+            if(tablero.esTurnoBlanca())
             {
 
                 jugador             = "Jugador blancas";
@@ -83,7 +83,7 @@ public class Ajedrez
 
             tablero.mostrarTablero();
 
-            tablero.setTurnoBlanca(!tablero.isTurnoBlanca());
+            tablero.asignarTurnoBlanca(!tablero.esTurnoBlanca());
 
             if(tablero.validarJaque(coordenadasOrigen, coordenadasDestino, 2))
             {
@@ -136,10 +136,10 @@ public class Ajedrez
 
                 }
 
-                for (int i = 0; i < Tablero.getLetras().length; i++)
+                for (int i = 0; i < Tablero.obtenerLetras().length; i++)
                 {
 
-                    String[] letras = Tablero.getLetras();
+                    String[] letras = Tablero.obtenerLetras();
 
                     if(letras[i].equals(Character.toString(coordenada.charAt(0)).toUpperCase()))
                     {
@@ -159,10 +159,10 @@ public class Ajedrez
 
                 }
 
-                for (int i = 0; i < Tablero.getNumeros().length; i++)
+                for (int i = 0; i < Tablero.obtenerNumeros().length; i++)
                 {
 
-                    int[] numeros = Tablero.getNumeros();
+                    int[] numeros = Tablero.obtenerNumeros();
 
                     if(numeros[i] == Integer.parseInt(Character.toString(coordenada.charAt(1))))
                     {

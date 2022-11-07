@@ -3,22 +3,14 @@ import java.util.ArrayList;
 public class Peon extends Pieza
 {
 
-    public Peon(int lado, boolean vivo)
+    public Peon(int color)
     {
 
-        this.lado           = lado;
-        this.vivo           = vivo;
+        this.color = color;
 
     }
 
     public void convertirse()
-    {
-
-
-
-    }
-
-    public void primerMovimiento()
     {
 
 
@@ -31,12 +23,12 @@ public class Peon extends Pieza
 
         final int NEGRAS            = 0;
 
-        int[] movimientos = getMovimientos();
+        int[] movimientos = obtenerMovimientos();
 
         ArrayList<String> movimientosPermitidos = new ArrayList<String>();
 
         // MOVIMIENTO HACIA ADELANTE
-        if (lado == NEGRAS)
+        if (color == NEGRAS)
         {
 
             if(coordenadaX == 1)
@@ -96,7 +88,7 @@ public class Peon extends Pieza
         }
 
         // MOVIMIENTO EN DIAGONAL
-        if(lado == NEGRAS)
+        if(color == NEGRAS)
         {
 
             if(coordenadaY != 0 && coordenadaY != 7)
@@ -350,128 +342,48 @@ public class Peon extends Pieza
 
         final int NEGRAS            = 0;
 
-        int[] movimientos = getMovimientos();
+        int[] movimientos = obtenerMovimientos();
 
         ArrayList<String> movimientosPermitidos = new ArrayList<String>();
 
-        // MOVIMIENTO HACIA ADELANTE
-        if (lado == NEGRAS)
-        {
-
-            if(coordenadaX == 1)
-            {
-
-                for (int j = coordenadaX + 1; j <= coordenadaX + movimientos[0]; j++)
-                {
-
-                    if (Tablero.validarPiezaAliada(j,coordenadaY))
-                        break;
-
-
-                    if(Tablero.validarPiezaEnemiga(j, coordenadaY))
-                    {
-
-                        Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(j, coordenadaY);
-
-                        if (piezaEnemiga instanceof Rey)
-                        {
-
-                            movimientosPermitidos.add(j +""+ coordenadaY);
-                            return movimientosPermitidos;
-
-                        }
-
-                    }
-
-                }
-
-            }
-            else
-            {
-
-                if (!Tablero.validarPiezaAliada(coordenadaX + 1, coordenadaY))
-                {
-
-                    Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(coordenadaX + 1, coordenadaY);
-
-                    if (piezaEnemiga instanceof Rey)
-                    {
-
-                        movimientosPermitidos.add((coordenadaX + 1) +""+ coordenadaY);
-                        return movimientosPermitidos;
-
-                    }
-
-                }
-
-            }
-
-        }
-        else
-        {
-
-            if(coordenadaX == 6)
-            {
-
-                for (int j = coordenadaX - 1; j >= coordenadaX - movimientos[0]; j--)
-                {
-
-                    if (Tablero.validarPiezaAliada(j,coordenadaY))
-                        break;
-
-                    if(Tablero.validarPiezaEnemiga(j, coordenadaY))
-                    {
-
-                        Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(j, coordenadaY);
-
-                        if (piezaEnemiga instanceof Rey)
-                        {
-
-                            movimientosPermitidos.add(j +""+ coordenadaY);
-                            return movimientosPermitidos;
-
-                        }
-
-                    }
-                        break;
-
-                }
-
-            }
-            else
-            {
-
-                if (!Tablero.validarPiezaAliada(coordenadaX - 1,coordenadaY))
-                {
-
-                    Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(coordenadaX - 1,coordenadaY);
-
-                    if (piezaEnemiga instanceof Rey)
-                    {
-
-                        movimientosPermitidos.add((coordenadaX - 1) +""+ coordenadaY);
-                        return movimientosPermitidos;
-
-                    }
-
-                }
-
-            }
-
-        }
-
         // MOVIMIENTO EN DIAGONAL
-        if(lado == NEGRAS)
+        if(color == NEGRAS)
         {
 
             if(coordenadaY != 0 && coordenadaY != 7)
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY + 1))
-                    movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY + 1));
+                {
+
+                    Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(coordenadaX + 1, coordenadaY + 1);
+
+                    if(piezaEnemiga instanceof Rey)
+                    {
+
+                        movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY + 1));
+
+                        return  movimientosPermitidos;
+
+                    }
+
+                }
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY - 1))
-                    movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY - 1));
+                {
+
+                    Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(coordenadaX + 1, coordenadaY - 1);
+
+                    if(piezaEnemiga instanceof Rey)
+                    {
+
+                        movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY - 1));
+
+                        return  movimientosPermitidos;
+
+                    }
+
+                }
 
             }
 
@@ -479,7 +391,20 @@ public class Peon extends Pieza
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY + 1))
-                    movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY + 1));
+                {
+
+                    Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(coordenadaX + 1, coordenadaY + 1);
+
+                    if(piezaEnemiga instanceof Rey)
+                    {
+
+                        movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY + 1));
+
+                        return  movimientosPermitidos;
+
+                    }
+
+                }
 
             }
 
@@ -487,7 +412,20 @@ public class Peon extends Pieza
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY - 1))
-                    movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY - 1));
+                {
+
+                    Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(coordenadaX + 1, coordenadaY - 1);
+
+                    if(piezaEnemiga instanceof Rey)
+                    {
+
+                        movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY - 1));
+
+                        return  movimientosPermitidos;
+
+                    }
+
+                }
 
             }
 
@@ -499,10 +437,36 @@ public class Peon extends Pieza
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY + 1))
-                    movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY + 1));
+                {
+
+                    Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(coordenadaX - 1, coordenadaY + 1);
+
+                    if(piezaEnemiga instanceof Rey)
+                    {
+
+                        movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY + 1));
+
+                        return  movimientosPermitidos;
+
+                    }
+
+                }
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY - 1))
-                    movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY - 1));
+                {
+
+                    Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(coordenadaX - 1, coordenadaY - 1);
+
+                    if(piezaEnemiga instanceof Rey)
+                    {
+
+                        movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY - 1));
+
+                        return  movimientosPermitidos;
+
+                    }
+
+                }
 
             }
 
@@ -510,7 +474,20 @@ public class Peon extends Pieza
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY + 1))
-                    movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY + 1));
+                {
+
+                    Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(coordenadaX - 1, coordenadaY + 1);
+
+                    if(piezaEnemiga instanceof Rey)
+                    {
+
+                        movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY + 1));
+
+                        return  movimientosPermitidos;
+
+                    }
+
+                }
 
             }
 
@@ -518,7 +495,20 @@ public class Peon extends Pieza
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY - 1))
-                    movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY - 1));
+                {
+
+                    Pieza piezaEnemiga = Tablero.obtenerPiezaJaque(coordenadaX - 1, coordenadaY - 1);
+
+                    if(piezaEnemiga instanceof Rey)
+                    {
+
+                        movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY - 1));
+
+                        return  movimientosPermitidos;
+
+                    }
+
+                }
 
             }
 
@@ -546,7 +536,7 @@ public class Peon extends Pieza
         if(blancas)
         {
 
-            if(lado == NEGRAS)
+            if(color == NEGRAS)
                 System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♙ "+"\u001B[0m" );
             else
                 System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♙ "+"\u001B[0m");
@@ -555,7 +545,7 @@ public class Peon extends Pieza
         else
         {
 
-            if (lado == NEGRAS)
+            if (color == NEGRAS)
                 System.out.print("\u001b[48;5;8m" + "\u001b[38;5;232m" + " ♙ "+"\u001B[0m");
             else
                 System.out.print("\u001b[48;5;8m" + "\u001b[38;5;255m" + " ♙ "+"\u001B[0m");
@@ -565,7 +555,7 @@ public class Peon extends Pieza
     }
 
     @Override
-    public int[] getMovimientos()
+    public int[] obtenerMovimientos()
     {
 
         int[] movimientos = {2, 0, 0, 0, 1};

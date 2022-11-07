@@ -3,11 +3,7 @@ import java.util.ArrayList;
 public abstract class Pieza
 {
 
-    int lado;
-
-    boolean vivo;
-
-    private int[] movimientos;
+    int color;
 
     public abstract ArrayList<String> moverse(int coordenadaX, int coordenadaY);
 
@@ -17,18 +13,10 @@ public abstract class Pieza
 
     public abstract void pintarse(boolean blancas, boolean seleccionada);
 
-    public int getLado() {
-        return lado;
+    public int obtenerColor() {
+        return color;
     }
 
-    public boolean isVivo() {
-        return vivo;
-    }
-
-    public void setVivo(boolean vivo) {
-        this.vivo = vivo;
-    }
-
-    public abstract int[] getMovimientos();
+    public abstract int[] obtenerMovimientos();
 
 }
