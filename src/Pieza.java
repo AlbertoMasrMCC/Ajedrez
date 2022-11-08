@@ -11,12 +11,12 @@ public abstract class Pieza
 
     public abstract ArrayList<String> moverseAtacaRey(int coordenadaX, int coordenadaY);
 
-    public abstract void pintarse(boolean blancas, boolean seleccionada);
+    public abstract void pintarse(boolean blancas, boolean seleccionada, boolean estaPeligro);
+
+    public abstract int[] obtenerMovimientos();
 
     public int obtenerColor() {
         return color;
     }
-
-    public abstract int[] obtenerMovimientos();
 
 }

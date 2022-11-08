@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Peon extends Pieza
 {
@@ -10,10 +11,70 @@ public class Peon extends Pieza
 
     }
 
-    public void convertirse()
+    public void convertirse(int [] coordenadaPieza)
     {
 
+        int opcion = 0;
+        Scanner entrada = new Scanner(System.in);
 
+        System.out.println("¡Tu peon llegó al otro extremo del tablero! \n Selecciona la pieza en la que te quieres convertir.");
+        System.out.println("1. Alfil");
+        System.out.println("2. Torre");
+        System.out.println("3. Caballo");
+        System.out.println("4. Reina");
+
+        while (true)
+        {
+
+            try
+            {
+
+                opcion = Integer.parseInt(entrada.nextLine());
+
+                if (opcion < 1 || opcion > 4)
+                {
+
+                    System.out.println("Selecciona una opción entre 1 y 4.");
+                    continue;
+
+                }
+
+                break;
+
+            }
+            catch (Exception e)
+            {
+
+                System.out.println("Selecciona una opción entre 1 y 4.");
+
+            }
+
+        }
+
+        Pieza piezaNueva = null;
+
+        switch (opcion)
+        {
+
+            case 1:
+                piezaNueva = new Alfil(color);
+            break;
+
+            case 2:
+                piezaNueva = new Torre(color);
+            break;
+
+            case 3:
+                piezaNueva = new Caballo(color);
+            break;
+
+            case 4:
+                piezaNueva = new Reina(color);
+            break;
+
+        }
+
+        Tablero.cambiarPeonTablero(coordenadaPieza, piezaNueva, color);
 
     }
 
@@ -43,6 +104,12 @@ public class Peon extends Pieza
                     if(Tablero.validarPiezaEnemiga(j, coordenadaY))
                         break;
 
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {j, coordenadaY};
+
+                    if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        break;
+
                     movimientosPermitidos.add(j +""+ coordenadaY);
 
                 }
@@ -52,7 +119,20 @@ public class Peon extends Pieza
             {
 
                 if (!Tablero.validarPiezaAliada(coordenadaX + 1, coordenadaY))
-                    movimientosPermitidos.add((coordenadaX + 1) +""+ coordenadaY);
+                {
+
+                    if(!Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY))
+                    {
+
+                        int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                        int[] coordenadasDestino    = {coordenadaX + 1, coordenadaY};
+
+                        if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                            movimientosPermitidos.add((coordenadaX + 1) +""+ coordenadaY);
+
+                    }
+
+                }
 
             }
 
@@ -72,6 +152,12 @@ public class Peon extends Pieza
                     if(Tablero.validarPiezaEnemiga(j, coordenadaY))
                         break;
 
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {j, coordenadaY};
+
+                    if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        break;
+
                     movimientosPermitidos.add(j +""+ coordenadaY);
 
                 }
@@ -81,7 +167,20 @@ public class Peon extends Pieza
             {
 
                 if (!Tablero.validarPiezaAliada(coordenadaX - 1,coordenadaY))
-                    movimientosPermitidos.add((coordenadaX - 1) +""+ coordenadaY);
+                {
+
+                    if (!Tablero.validarPiezaEnemiga(coordenadaX - 1,coordenadaY))
+                    {
+
+                        int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                        int[] coordenadasDestino    = {coordenadaX - 1, coordenadaY};
+
+                        if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                            movimientosPermitidos.add((coordenadaX - 1) +""+ coordenadaY);
+
+                    }
+
+                }
 
             }
 
@@ -95,10 +194,26 @@ public class Peon extends Pieza
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY + 1))
-                    movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY + 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX + 1, coordenadaY + 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY + 1));
+
+                }
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY - 1))
-                    movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY - 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX + 1, coordenadaY - 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY - 1));
+
+                }
 
             }
 
@@ -106,7 +221,15 @@ public class Peon extends Pieza
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY + 1))
-                    movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY + 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX + 1, coordenadaY + 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY + 1));
+
+                }
 
             }
 
@@ -114,7 +237,15 @@ public class Peon extends Pieza
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY - 1))
-                    movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY - 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX + 1, coordenadaY - 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX + 1) +""+ (coordenadaY - 1));
+
+                }
 
             }
 
@@ -126,10 +257,26 @@ public class Peon extends Pieza
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY + 1))
-                    movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY + 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX - 1, coordenadaY + 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY + 1));
+
+                }
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY - 1))
-                    movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY - 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX - 1, coordenadaY - 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY - 1));
+
+                }
 
             }
 
@@ -137,7 +284,15 @@ public class Peon extends Pieza
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY + 1))
-                    movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY + 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX - 1, coordenadaY + 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY + 1));
+
+                }
 
             }
 
@@ -145,7 +300,15 @@ public class Peon extends Pieza
             {
 
                 if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY - 1))
-                    movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY - 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX - 1, coordenadaY - 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX - 1) +""+ (coordenadaY - 1));
+
+                }
 
             }
 
@@ -519,7 +682,7 @@ public class Peon extends Pieza
     }
 
     @Override
-    public void pintarse(boolean blancas, boolean seleccionada)
+    public void pintarse(boolean blancas, boolean seleccionada, boolean estaPeligro)
     {
 
         final int NEGRAS    = 0;
@@ -529,6 +692,14 @@ public class Peon extends Pieza
         {
 
             System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♙ "+"\u001B[0m" );
+            return;
+
+        }
+
+        if(estaPeligro)
+        {
+
+            System.out.print("\u001b[42m"+"\u001b[38;5;127m"+" ♙ "+"\u001B[0m" );
             return;
 
         }

@@ -77,12 +77,12 @@ public class Tablero
         ArrayList<Casilla> tmpPiezasBlancas = new ArrayList<>();
 
         // Rey negras
-        tmpPiezasNegras.add(piezasNegras.get(3));
-        piezasNegras.remove(3);
+        tmpPiezasNegras.add(piezasNegras.get(4));
+        piezasNegras.remove(4);
 
         // Rey blancas
-        tmpPiezasBlancas.add(piezasBlancas.get(11));
-        piezasBlancas.remove(11);
+        tmpPiezasBlancas.add(piezasBlancas.get(12));
+        piezasBlancas.remove(12);
 
         for (Casilla piezaNegras: piezasNegras)
         {
@@ -106,7 +106,7 @@ public class Tablero
 
     }
 
-    public int encontrarElementoArregloPiezas(ArrayList<Casilla> piezasBuscar, int coordenadaX, int coordenadaY)
+    public static int encontrarElementoArregloPiezas(ArrayList<Casilla> piezasBuscar, int coordenadaX, int coordenadaY)
     {
 
         for (int i = 0; i < piezasBuscar.size(); i++)
@@ -123,7 +123,7 @@ public class Tablero
 
     }
 
-    public ArrayList<Casilla> copiarElementosArregloPiezas(ArrayList<Casilla> arregloOrigen, ArrayList<Casilla> arregloDestino)
+    public static ArrayList<Casilla> copiarElementosArregloPiezas(ArrayList<Casilla> arregloOrigen, ArrayList<Casilla> arregloDestino)
     {
 
         arregloDestino.clear();
@@ -214,8 +214,8 @@ public class Tablero
         }
 
         // CREAR REY
-        if((coordenadaX == 0 && coordenadaY == 3) ||
-           (coordenadaX == 7 && coordenadaY == 3))
+        if((coordenadaX == 0 && coordenadaY == 4) ||
+           (coordenadaX == 7 && coordenadaY == 4))
         {
 
             if(coordenadaX == 0)
@@ -236,8 +236,8 @@ public class Tablero
         }
 
         // CREAR REINA
-        if((coordenadaX == 0 && coordenadaY == 4) ||
-           (coordenadaX == 7 && coordenadaY == 4))
+        if((coordenadaX == 0 && coordenadaY == 3) ||
+           (coordenadaX == 7 && coordenadaY == 3))
         {
 
             if(coordenadaX == 0)
@@ -288,7 +288,7 @@ public class Tablero
 
         int numerosContador = 7;
 
-        boolean blancas = true;
+        boolean blancas = false;
 
         for (int i = 0; i < casillasTablero.length; i++)
         {
@@ -298,7 +298,7 @@ public class Tablero
             for(int j = 0; j < casillasTablero[i].length; j++)
             {
 
-                pintarPieza(casillasTablero[i][j], blancas, false);
+                pintarPieza(casillasTablero[i][j], blancas, false, false);
 
                 blancas = !blancas;
 
@@ -331,7 +331,7 @@ public class Tablero
 
         int numerosContador = 7;
 
-        boolean blancas = true;
+        boolean blancas = false;
 
         for (int i = 0; i < casillasTablero.length; i++)
         {
@@ -344,14 +344,23 @@ public class Tablero
                 String movimientoActual = i +"" +j;
 
                 if(movimientosPermitidos.contains(movimientoActual))
-                    pintarMovimientosPermitidos();
+                {
+
+                    Pieza pieza = casillasTablero[i][j].obtenerPieza();
+
+                    if(pieza != null)
+                        pintarPieza(casillasTablero[i][j], blancas, false, true);
+                    else
+                        pintarMovimientosPermitidos();
+
+                }
                 else
                 {
 
                     if(movimientoActual.equals(coordenadaPiezaSeleccionada))
-                        pintarPieza(casillasTablero[i][j], blancas, true);
+                        pintarPieza(casillasTablero[i][j], blancas, true, false);
                     else
-                        pintarPieza(casillasTablero[i][j], blancas, false);
+                        pintarPieza(casillasTablero[i][j], blancas, false, false);
 
                 }
 
@@ -380,7 +389,7 @@ public class Tablero
 
     }
 
-    public void pintarPieza(Casilla casilla, boolean blancas, boolean seleccionada)
+    public void pintarPieza(Casilla casilla, boolean blancas, boolean seleccionada, boolean estaPeligro)
     {
 
         if(casilla.obtenerPieza() == null)
@@ -392,7 +401,7 @@ public class Tablero
 
         }
 
-        casilla.obtenerPieza().pintarse(blancas, seleccionada);
+        casilla.obtenerPieza().pintarse(blancas, seleccionada, estaPeligro);
 
     }
 
@@ -433,6 +442,54 @@ public class Tablero
 
     }
 
+    public void validarConversionPeon(int [] coordenadaPieza)
+    {
+
+        Casilla casillaPieza = casillasTablero[coordenadaPieza[0]] [coordenadaPieza[1]];
+
+        Pieza pieza = casillaPieza.obtenerPieza();
+
+        if(!(pieza instanceof Peon))
+            return;
+
+        if(pieza.obtenerColor() == 0)
+        {
+
+            if(coordenadaPieza[0] != 7)
+                return;
+
+            ((Peon) pieza).convertirse(coordenadaPieza);
+
+        }
+        else
+        {
+
+            if(coordenadaPieza[0] != 0)
+                return;
+
+            ((Peon) pieza).convertirse(coordenadaPieza);
+
+        }
+
+    }
+
+    public boolean validarEmpate()
+    {
+
+        if(piezasBlancas.size() == 1 && piezasNegras.size() == 1)
+            return true;
+        else
+            return false;
+
+    }
+
+    public static void cambiarPeonTablero(int[] coordenadasPeon, Pieza piezaNueva, int color)
+    {
+
+        casillasTablero[coordenadasPeon[0]][coordenadasPeon[1]].establecerPieza(piezaNueva);
+
+    }
+
     public static Pieza obtenerPiezaJaque(int coordenadaX, int coordenadaY)
     {
 
@@ -451,7 +508,7 @@ public class Tablero
 
     }
 
-    public void jugada(int[] coordenadaOrigen, int[] coordenadaDestino)
+    public static void jugada(int[] coordenadaOrigen, int[] coordenadaDestino)
     {
 
         int coordXOrigen = coordenadaOrigen[0];
@@ -494,7 +551,7 @@ public class Tablero
 
     }
 
-    public boolean validarJaque(int[] coordenadaOrigen, int[] coordenadaDestino, int tipoValidacion)
+    public static boolean validarJaque(int[] coordenadaOrigen, int[] coordenadaDestino, int tipoValidacion)
     {
 
         if(tipoValidacion == 1)
@@ -509,7 +566,7 @@ public class Tablero
 
     }
 
-    public boolean validarJaqueAlMoverPiezaPropia(int[] coordenadaOrigen, int[] coordenadaDestino)
+    public static boolean validarJaqueAlMoverPiezaPropia(int[] coordenadaOrigen, int[] coordenadaDestino)
     {
 
         int coordXOrigen = coordenadaOrigen[0];
@@ -584,7 +641,7 @@ public class Tablero
 
     }
 
-    public boolean validarJaqueAlMoverPieza()
+    public static boolean validarJaqueAlMoverPieza()
     {
 
         Rey rey;
@@ -731,11 +788,7 @@ public class Tablero
             {
 
                 if(movimientosPiezaPeligrosa.contains(movimientoEnemigo))
-                {
-
                     return false;
-
-                }
 
             }
 

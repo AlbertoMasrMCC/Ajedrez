@@ -25,6 +25,12 @@ public class Reina extends Pieza
             if(j < 0 || Tablero.validarPiezaAliada(j, coordenadaY))
                 break;
 
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {j, coordenadaY};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
+
             movimientosPermitidos.add(j +""+ coordenadaY);
 
             if(Tablero.validarPiezaEnemiga(j, coordenadaY))
@@ -38,6 +44,12 @@ public class Reina extends Pieza
 
             if(j > 7 || Tablero.validarPiezaAliada(coordenadaX, j))
                 break;
+
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {coordenadaX, j};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
 
             movimientosPermitidos.add(coordenadaX +""+ j);
 
@@ -53,6 +65,12 @@ public class Reina extends Pieza
             if(j > 7 || Tablero.validarPiezaAliada(j,coordenadaY))
                 break;
 
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {j, coordenadaY};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
+
             movimientosPermitidos.add(j +""+ coordenadaY);
 
             if(Tablero.validarPiezaEnemiga(j, coordenadaY))
@@ -66,6 +84,12 @@ public class Reina extends Pieza
 
             if(j < 0 || Tablero.validarPiezaAliada(coordenadaX,j))
                 break;
+
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {coordenadaX, j};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
 
             movimientosPermitidos.add(coordenadaX +""+ j);
 
@@ -82,6 +106,12 @@ public class Reina extends Pieza
             if (x < 0 || y > 7 || Tablero.validarPiezaAliada(x, y))
                 break;
 
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {x, y};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
+
             movimientosPermitidos.add(x +""+ y);
 
             if(Tablero.validarPiezaEnemiga(x, y))
@@ -95,6 +125,12 @@ public class Reina extends Pieza
 
             if (x < 0 || y < 0 || Tablero.validarPiezaAliada(x, y))
                 break;
+
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {x, y};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
 
             movimientosPermitidos.add(x +""+ y);
 
@@ -110,6 +146,12 @@ public class Reina extends Pieza
             if (x > 7 || y < 0 || Tablero.validarPiezaAliada(x, y))
                 break;
 
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {x, y};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
+
             movimientosPermitidos.add(x +""+ y);
 
             if(Tablero.validarPiezaEnemiga(x, y))
@@ -123,6 +165,12 @@ public class Reina extends Pieza
 
             if (x > 7 || y > 7 || Tablero.validarPiezaAliada(x, y))
                 break;
+
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {x, y};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
 
             movimientosPermitidos.add(x +""+ y);
 
@@ -530,7 +578,7 @@ public class Reina extends Pieza
     }
 
     @Override
-    public void pintarse(boolean blancas, boolean seleccionada)
+    public void pintarse(boolean blancas, boolean seleccionada, boolean estaPeligro)
     {
 
         final int NEGRAS    = 0;
@@ -540,6 +588,14 @@ public class Reina extends Pieza
         {
 
             System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♛ "+"\u001B[0m" );
+            return;
+
+        }
+
+        if(estaPeligro)
+        {
+
+            System.out.print("\u001b[42m"+"\u001b[38;5;127m"+" ♛ "+"\u001B[0m" );
             return;
 
         }

@@ -9,6 +9,7 @@ public class Caballo extends Pieza
         this.color = color;
 
     }
+
     @Override
     public ArrayList<String> moverse(int coordenadaX, int coordenadaY)
     {
@@ -29,7 +30,15 @@ public class Caballo extends Pieza
             {
 
                 if (!Tablero.validarPiezaAliada(movimientoPosible, coordenadaY - 1))
-                    movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {movimientoPosible, coordenadaY - 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
+
+                }
 
             }
 
@@ -37,7 +46,15 @@ public class Caballo extends Pieza
             {
 
                 if (!Tablero.validarPiezaAliada(movimientoPosible, coordenadaY + 1))
-                    movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {movimientoPosible, coordenadaY + 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
+
+                }
 
             }
 
@@ -53,7 +70,15 @@ public class Caballo extends Pieza
             {
 
                 if (!Tablero.validarPiezaAliada(coordenadaX - 1, movimientoPosible))
-                    movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX - 1, movimientoPosible};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
+
+                }
 
             }
 
@@ -61,7 +86,15 @@ public class Caballo extends Pieza
             {
 
                 if (!Tablero.validarPiezaAliada(coordenadaX + 1, movimientoPosible))
-                    movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX + 1, movimientoPosible};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
+
+                }
 
             }
 
@@ -77,14 +110,31 @@ public class Caballo extends Pieza
             {
 
                 if (!Tablero.validarPiezaAliada(movimientoPosible, coordenadaY - 1))
-                    movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {movimientoPosible, coordenadaY - 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY - 1));
+
+                }
+
             }
 
             if(coordenadaY + 1 <= 7)
             {
 
                 if (!Tablero.validarPiezaAliada(movimientoPosible, coordenadaY + 1))
-                    movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {movimientoPosible, coordenadaY + 1};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add(movimientoPosible +""+ (coordenadaY + 1));
+
+                }
 
             }
 
@@ -100,14 +150,31 @@ public class Caballo extends Pieza
             {
 
                 if (!Tablero.validarPiezaAliada(coordenadaX - 1, movimientoPosible))
-                    movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX - 1, movimientoPosible};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX - 1) +""+ movimientoPosible);
+
+                }
 
             }
 
             if(coordenadaX + 1 <= 7)
             {
                 if (!Tablero.validarPiezaAliada(coordenadaX + 1, movimientoPosible))
-                    movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
+                {
+
+                    int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+                    int[] coordenadasDestino    = {coordenadaX + 1, movimientoPosible};
+
+                    if(!Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                        movimientosPermitidos.add((coordenadaX + 1) +""+ movimientoPosible);
+
+                }
+
             }
 
         }
@@ -511,7 +578,7 @@ public class Caballo extends Pieza
     }
 
     @Override
-    public void pintarse(boolean blancas, boolean seleccionada)
+    public void pintarse(boolean blancas, boolean seleccionada, boolean estaPeligro)
     {
 
         final int NEGRAS    = 0;
@@ -521,6 +588,14 @@ public class Caballo extends Pieza
         {
 
             System.out.print("\u001b[48;5;177m"+"\u001b[38;5;127m"+" ♞ "+"\u001B[0m" );
+            return;
+
+        }
+
+        if(estaPeligro)
+        {
+
+            System.out.print("\u001b[42m"+"\u001b[38;5;127m"+" ♞ "+"\u001B[0m" );
             return;
 
         }

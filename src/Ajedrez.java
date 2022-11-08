@@ -71,15 +71,9 @@ public class Ajedrez
 
             }
 
-            if(tablero.validarJaque(coordenadasOrigen, coordenadasDestino, 1))
-            {
-                tablero.mostrarTablero();
-                System.out.println(jugador +" no es posible realizar ese movimiento ya que estarás en jaque.");
-                continue;
-
-            }
-
             tablero.jugada(coordenadasOrigen, coordenadasDestino);
+
+            tablero.validarConversionPeon(coordenadasDestino);
 
             tablero.mostrarTablero();
 
@@ -97,6 +91,14 @@ public class Ajedrez
                 }
 
                 System.out.println(jugadorContrario +" estás en jaque.");
+
+            }
+
+            if(tablero.validarEmpate())
+            {
+
+                System.out.println("Empate.");
+                break;
 
             }
 

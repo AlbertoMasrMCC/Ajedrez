@@ -10,13 +10,6 @@ public class Torre extends Pieza
 
     }
 
-    public void enroque()
-    {
-
-
-
-    }
-
     @Override
     public ArrayList<String> moverse(int coordenadaX, int coordenadaY)
     {
@@ -32,6 +25,12 @@ public class Torre extends Pieza
             if(j < 0 || Tablero.validarPiezaAliada(j, coordenadaY))
                 break;
 
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {j, coordenadaY};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
+
             movimientosPermitidos.add(j +""+ coordenadaY);
 
             if(Tablero.validarPiezaEnemiga(j, coordenadaY))
@@ -45,6 +44,12 @@ public class Torre extends Pieza
 
             if(j > 7 || Tablero.validarPiezaAliada(coordenadaX, j))
                 break;
+
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {coordenadaX, j};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
 
             movimientosPermitidos.add(coordenadaX +""+ j);
 
@@ -60,6 +65,12 @@ public class Torre extends Pieza
             if(j > 7 || Tablero.validarPiezaAliada(j,coordenadaY))
                 break;
 
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {j, coordenadaY};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
+
             movimientosPermitidos.add(j +""+ coordenadaY);
 
             if(Tablero.validarPiezaEnemiga(j, coordenadaY))
@@ -73,6 +84,12 @@ public class Torre extends Pieza
 
             if(j < 0 || Tablero.validarPiezaAliada(coordenadaX,j))
                 break;
+
+            int[] coordenadasOrigen     = {coordenadaX, coordenadaY};
+            int[] coordenadasDestino    = {coordenadaX, j};
+
+            if(Tablero.validarJaqueAlMoverPiezaPropia(coordenadasOrigen, coordenadasDestino))
+                continue;
 
             movimientosPermitidos.add(coordenadaX +""+ j);
 
@@ -377,7 +394,7 @@ public class Torre extends Pieza
     }
 
     @Override
-    public void pintarse(boolean blancas, boolean seleccionada)
+    public void pintarse(boolean blancas, boolean seleccionada, boolean estaPeligro)
     {
 
         final int NEGRAS    = 0;
@@ -391,13 +408,21 @@ public class Torre extends Pieza
 
         }
 
+        if(estaPeligro)
+        {
+
+            System.out.print("\u001b[42m"+"\u001b[38;5;127m"+" ♜ "+"\u001B[0m" );
+            return;
+
+        }
+
         if(blancas)
         {
 
             if(color == NEGRAS)
                 System.out.print("\u001b[48;5;250m"+"\u001b[38;5;232m"+" ♜ "+"\u001B[0m" );
             else
-                System.out.print("\u001b[48;5;7m"+"\u001b[38;5;255m"+" ♜ "+"\u001B[0m");
+                System.out.print("\u001b[48;5;250m"+"\u001b[38;5;255m"+" ♜ "+"\u001B[0m");
 
         }
         else
