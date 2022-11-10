@@ -5,8 +5,6 @@ public abstract class Pieza
 
     int color;
 
-    String movimientosRealizados;
-
     public abstract ArrayList<String> moverse(int coordenadaX, int coordenadaY);
 
     public abstract boolean validarMovimientosJaque(int coordenadaX, int coordenadaY);
