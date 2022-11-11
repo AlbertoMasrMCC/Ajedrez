@@ -361,6 +361,334 @@ public class Reina extends Pieza
         }
         /**********************************/
 
+        /***** PEON *****/
+
+        if(coordenadaX + 1 <= 7)
+        {
+
+            if(coordenadaY - 1 >= 0)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY - 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX + 1, coordenadaY - 1);
+
+                    if(piezaObtenida.obtenerColor() == 1)
+                    {
+
+                        if(piezaObtenida instanceof Peon)
+                            return true;
+
+                    }
+
+                }
+
+            }
+
+            if(coordenadaY + 1 <= 7)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY + 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX + 1, coordenadaY + 1);
+
+                    if(piezaObtenida.obtenerColor() == 1)
+                    {
+
+                        if(piezaObtenida instanceof Peon)
+                            return true;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        if(coordenadaX - 1 >= 0)
+        {
+
+            if(coordenadaY - 1 >= 0)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY - 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX - 1, coordenadaY - 1);
+
+                    if(piezaObtenida.obtenerColor() == 0)
+                    {
+
+                        if(piezaObtenida instanceof Peon)
+                            return true;
+
+                    }
+
+                }
+
+            }
+
+            if(coordenadaY + 1 <= 7)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY + 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX - 1, coordenadaY + 1);
+
+                    if(piezaObtenida.obtenerColor() == 0)
+                    {
+
+                        if(piezaObtenida instanceof Peon)
+                            return true;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        if(coordenadaY + 1 <= 7)
+        {
+
+            if(coordenadaX - 1 >= 0)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY + 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX - 1, coordenadaY + 1);
+
+                    if(piezaObtenida.obtenerColor() == 0)
+                    {
+
+                        if(piezaObtenida instanceof Peon)
+                            return true;
+
+                    }
+
+                }
+
+            }
+
+            if(coordenadaX + 1 <= 7)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY + 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX + 1, coordenadaY + 1);
+
+                    if(piezaObtenida.obtenerColor() == 1)
+                    {
+
+                        if(piezaObtenida instanceof Peon)
+                            return true;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        if(coordenadaY - 1 >= 0)
+        {
+
+            if(coordenadaX - 1 >= 0)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY - 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX - 1, coordenadaY - 1);
+
+                    if(piezaObtenida.obtenerColor() == 0)
+                    {
+
+                        if(piezaObtenida instanceof Peon)
+                            return true;
+
+                    }
+
+                }
+
+            }
+
+            if(coordenadaX + 1 <= 7)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY - 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX + 1, coordenadaY - 1);
+
+                    if(piezaObtenida.obtenerColor() == 1)
+                    {
+
+                        if(piezaObtenida instanceof Peon)
+                            return true;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        /***************/
+
+        /***** CABALLOS *****/
+
+        if(coordenadaX + 2 <= 7)
+        {
+
+            if(coordenadaY - 1 >= 0)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX + 2, coordenadaY - 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX + 2, coordenadaY - 1);
+
+                    if(piezaObtenida instanceof Caballo)
+                        return true;
+
+                }
+
+            }
+
+            if(coordenadaY + 1 <= 7)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX + 2, coordenadaY + 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX + 2, coordenadaY + 1);
+
+                    if(piezaObtenida instanceof Caballo)
+                        return true;
+
+                }
+
+            }
+
+        }
+
+        if(coordenadaX - 2 >= 0)
+        {
+
+            if(coordenadaY - 1 >= 0)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX - 2, coordenadaY - 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX - 2, coordenadaY - 1);
+
+                    if(piezaObtenida instanceof Caballo)
+                        return true;
+
+                }
+
+            }
+
+            if(coordenadaY + 1 <= 7)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX - 2, coordenadaY + 1))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX - 2, coordenadaY + 1);
+
+                    if(piezaObtenida instanceof Caballo)
+                        return true;
+
+                }
+
+            }
+
+        }
+
+        if(coordenadaY + 2 <= 7)
+        {
+
+            if(coordenadaX - 1 >= 0)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY + 2))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX - 1, coordenadaY + 2);
+
+                    if(piezaObtenida instanceof Caballo)
+                        return true;
+
+                }
+
+            }
+
+            if(coordenadaX + 1 <= 7)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY + 2))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX + 1, coordenadaY + 2);
+
+                    if(piezaObtenida instanceof Caballo)
+                        return true;
+
+                }
+
+            }
+
+        }
+
+        if(coordenadaY - 2 >= 0)
+        {
+
+            if(coordenadaX - 1 >= 0)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX - 1, coordenadaY - 2))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX - 1, coordenadaY - 2);
+
+                    if(piezaObtenida instanceof Caballo)
+                        return true;
+
+                }
+
+            }
+
+            if(coordenadaX + 1 <= 7)
+            {
+
+                if(Tablero.validarPiezaEnemiga(coordenadaX + 1, coordenadaY - 2))
+                {
+
+                    Pieza piezaObtenida = Tablero.obtenerPiezaJaque(coordenadaX + 1, coordenadaY - 2);
+
+                    if(piezaObtenida instanceof Caballo)
+                        return true;
+
+                }
+
+            }
+
+        }
+
+        /********************/
+
         return false;
 
     }

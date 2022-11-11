@@ -85,7 +85,7 @@ public class Ajedrez
                 if(tablero.validarJaqueMate(coordenadasDestino))
                 {
 
-                    System.out.println("Jaque Mate, gana el jugador "+ jugadorContrario);
+                    System.out.println("Jaque Mate, gana el jugador "+ jugador);
                     break;
 
                 }

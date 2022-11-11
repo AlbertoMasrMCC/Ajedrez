@@ -35,6 +35,7 @@ public class Tablero
             for(int j = 0; j < casillasTablero[i].length ; j++)
             {
 
+
                 Pieza pieza = crearPieza(i, j);
 
                 int[]coordenadas = {i , j};
@@ -772,8 +773,10 @@ public class Tablero
 
         asignarTurnoBlanca(!turnoBlanca);
 
-        for (Casilla piezasEnemigas: piezasValidar)
+        for (int i = 0; i < piezasValidar.size(); i++)
         {
+
+            Casilla piezasEnemigas = piezasValidar.get(i);
 
             Pieza piezaEnemiga      = piezasEnemigas.obtenerPieza();
 
